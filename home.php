@@ -32,21 +32,28 @@
                     <h3 class="masthead-brand">Home</h3>
                     <button id="logout" class="btn btn-danger">Deslogar</button>
                 </div>
-                
+
 
                 <nav class="nav nav-masthead justify-content-center">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                            aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <a class="nav-link" id="home">Home</a>
-                            <a class="nav-link " id="CP">Cadastrar Produtos</a>
-                            <a class="nav-link" id="CF">Cadastrar Funcionarios</a>
-                            <a class="nav-link" id="LP">Listar Produtos</a>
-                            <a class="nav-link" id="LF">Listar Funcionarios</a>
+                            <li class="nav-link dropdown" id="Cadastrar">
+                                <a class="dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cadastrar</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" id="CP" href="#">Produto</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="CF" href="#">Funcionario</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Cliente</a>
+                                </div>
+                            </li>
+                            <a class="nav-link">Atualizar</a>
+                            <a class="nav-link" id="LP">Deletar</a>
+                            <a class="nav-link" id="LF">Listar</a>
                         </div>
 
                     </nav>
