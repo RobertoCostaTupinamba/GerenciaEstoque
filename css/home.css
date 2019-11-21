@@ -81,9 +81,9 @@ body {
   .masthead-brand {
     float: left;
   }
-  .nav-masthead {
-    /* float: right; */
-  }
+  /* .nav-masthead {
+    float: right;
+  } */
 }
 
 
