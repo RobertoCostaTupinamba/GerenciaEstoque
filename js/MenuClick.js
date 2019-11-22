@@ -35,7 +35,7 @@ let cadf = '<div id="formContent">' + '<form id="CadFunc">' +
     '</form>' +
     '</div>';
 
-let home = '<h1 class="cover-heading">Seja Bem Vindo!!</h1>' + '<p id="NomeUser" class="lead"></p>'
+let home = '<h1 class="cover-heading titulo">Seja Bem Vindo!!</h1>' + '<p id="NomeUser" class="lead"></p>'
 
 let LP = '<table class="table">' +
     '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th></tr></thead><tbody id="tbody"></tbody></table>'
