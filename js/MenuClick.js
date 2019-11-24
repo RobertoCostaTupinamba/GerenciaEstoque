@@ -46,15 +46,15 @@ let cadf = '<div id="formContent">' + '<form id="CadFunc">' +
 let home = '<h1 class="cover-heading titulo">Seja Bem Vindo!!</h1>' + '<p id="NomeUser" class="lead"></p>'
 
 let CC = '<div id="formContent">' + '<form id="CadCli">' +
-    '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf" maxlength="11"></input>' +
-    '<input type="text" id="nomecli" class="fadeIn third" name="nomecli" placeholder="Nome" maxlength="100">' +
-    '<input type="text" id="Telcli" class="fadeIn third" name="Telcli" placeholder="Telefone" required >' +
-    '<input type="text" id="ruacli" class="fadeIn first" name="ruacli" placeholder="Rua">' +
+    '<input type="text" id="cpfcli" class="fadeIn first" name="cpfcli" placeholder="Cpf" maxlength="11"></input>' +
+    '<input type="text" id="nomecli" class="fadeIn first" name="nomecli" placeholder="Nome" maxlength="100">' +
+    '<input type="text" id="Telcli" class="fadeIn second" name="Telcli" placeholder="Telefone" required >' +
+    '<input type="text" id="ruacli" class="fadeIn second" name="ruacli" placeholder="Rua">' +
     '<input type="number" id="numcli" class="fadeIn second" name="numcli" placeholder="Numero">' +
     '<input type="text" id="bairrocli" class="fadeIn second" name="bairrocli" placeholder="Bairro">' +
-    '<input type="text" id="cidadecli" class="fadeIn second" name="cidadecli" placeholder="Cidade">' +
-    '<input type="text" id="cepcli" class="fadeIn fourth" name="cepcli" placeholder="CEP">' +
-    '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
+    '<input type="text" id="cidadecli" class="fadeIn third" name="cidadecli" placeholder="Cidade">' +
+    '<input type="text" id="cepcli" class="fadeIn third" name="cepcli" placeholder="CEP">' +
+    '<input type="submit" id="button" class="fadeIn third" value="Cadastar">' +
     '</div>';
 
 let CFR = '<div id="formContent">' + '<form id="CadCFR">' +

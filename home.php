@@ -77,7 +77,6 @@
                                     <a class="dropdown-item" id="ANT" href="#">Contas</a>
                                 </div>
                             </li>
-                            <a class="nav-link">Atualizar</a>
                             <a class="nav-link" id="LP">Deletar</a>
                             <a class="nav-link" id="LF">Listar</a>
                         </div>
