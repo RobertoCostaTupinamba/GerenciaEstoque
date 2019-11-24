@@ -86,8 +86,8 @@
             </div>
         </header>
         <div class="container-fluid w-100 h-100 p-0 d-flex justify-content-center ">
-            <main role="main" class="inner w-75 d-flex justify-content-center align-items-center">
-                <div id="mensagemDiv"></div>
+            <main role="main" class="inner w-75 flex-column align-self-center">
+                <div  id="mensagemDiv"></div>
                 <div id="h">
                     <h1 class="cover-heading titulo">Seja Bem Vindo!!</h1>
                     <p id="NomeUser" class="lead"></p>
