@@ -15,7 +15,7 @@ let cadp = '<div id="formContent">' + '<form id="CadProd">' +
     '<option value="GG">GG</option>' +
     '<option value="GGG">GGG</option>' +
     '</select>' +
-    '<select class="fadeIn third" name="select">' +
+    '<select class="fadeIn third" name="select1">' +
     '<option value="null" disabled selected>Selecionar Fornecedor</option>' +
     '<option value="1">1</option> ' +
     '</select>' +
