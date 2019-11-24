@@ -19,7 +19,7 @@ let cadp = '<div id="formContent">' + '<form id="CadProd">' +
     '<option value="null" disabled selected>Selecionar Fornecedor</option>' +
     '<option value="1">1</option> ' +
     '</select>' +
-    '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
+    '<input type="submit" class="fadeIn fourth" value="Cadastar">' +
     '</form>' +
     '</div>';
 
@@ -89,11 +89,6 @@ let LF = '<table class="table">' +
 
 $(document).ready(function () {
 
-    $("#button").click(function (e) { 
-        e.preventDefault();
-        alert("Asas")
-    });
-
     $("#home").click(function (e) {
         $(".active").removeClass("active");
         $("#home").addClass("active");
@@ -119,7 +114,7 @@ $(document).ready(function () {
         $("#h").empty();
         $("#h").html(cadp);
         $(".masthead-brand").text("Cadastrar Produtos");
-        // $("#script").html('<script src="./js/request.js"></script>');
+        $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#CF").click(function (e) {
         $(".active").removeClass("active");
@@ -133,7 +128,7 @@ $(document).ready(function () {
         $("#nasciFunc").mask("99/99/9999");
         $("#DTinicioFunc").mask("99/99/9999");
         $("input#ContaCFunc").mask("99999-9");
-        //$("#script").html('<script src="./js/request.js"></script>');
+        $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#CC").click(function (e) {
         $(".active").removeClass("active");
@@ -143,7 +138,7 @@ $(document).ready(function () {
         $(".masthead-brand").text("Cadastrar Cliente");
         $("input#Telcli").mask("(99) 99999-999?9")
         $("#cpfcli").mask("999.999.999-99");
-        //$("#script").html('<script src="./js/request.js"></script>');
+        $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#CNT").click(function (e) {
         $(".active").removeClass("active");
@@ -154,7 +149,7 @@ $(document).ready(function () {
         $("input#Telcli").mask("(99) 99999-999?9")
         $("#cpfcli").mask("999.999.999-99");
         $("#VenCNT").mask("99/99/9999");
-        //$("#script").html('<script src="./js/request.js"></script>');
+        $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#CFR").click(function (e) {
         $(".active").removeClass("active");
@@ -164,14 +159,14 @@ $(document).ready(function () {
         $(".masthead-brand").text("Cadastrar Fornecedor");
         $("input#Telcfr").mask("(99) 99999-999?9")
         $("input#cepcfr").mask("99999-999")
-        //$("#script").html('<script src="./js/request.js"></script>');
+        $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#AP").click(function (e) {
         $(".active").removeClass("active");
         $("#AP").addClass("active");
         $("#h").empty();
         $("#h").html(AP);
-        //$("#script").html('<script src="./js/request.js"></script>');
+        $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#LP").click(function (e) {
         $(".active").removeClass("active");
