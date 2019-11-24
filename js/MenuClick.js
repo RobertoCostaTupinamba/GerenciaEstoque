@@ -15,11 +15,13 @@ let cadp = '<div id="formContent">' + '<form id="CadProd">' +
     '<option value="GG">GG</option>' +
     '<option value="GGG">GGG</option>' +
     '</select>' +
-    '<input type="submit" class="fadeIn fourth" value="Cadastar">' +
+    '<select class="fadeIn third" name="select">' +
+    '<option value="null" disabled selected>Selecionar Fornecedor</option>' +
+    '<option value="1">1</option> ' +
+    '</select>' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
     '</form>' +
     '</div>';
-
-
 
 let cadf = '<div id="formContent">' + '<form id="CadFunc">' +
     '<input type="text" id="cpfFunc" class="fadeIn first" name="cpfFunc" placeholder="Cpf" maxlength="11"></input>' +
@@ -33,11 +35,11 @@ let cadf = '<div id="formContent">' + '<form id="CadFunc">' +
     '<input type="text" id="cepFunc" class="fadeIn fourth" name="cepFunc" placeholder="CEP">' +
     '<input type="text" id="SalFunc" class="fadeIn fourth" name="SalFunc" placeholder="Salario" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))"></input>' +
     '<input type="text" id="nasciFunc" class="fadeIn fourth" name="nasciFunc" placeholder="Data do nascimento" maxlength="32">' +
-     '<input type="text" id="DTinicioFunc" class="fadeIn fourth" name="DTinicioFunc" placeholder="Data do inicio do trabalho" maxlength="32">' +
+    '<input type="text" id="DTinicioFunc" class="fadeIn fourth" name="DTinicioFunc" placeholder="Data do inicio do trabalho" maxlength="32">' +
     '<input type="text" id="CHFunc" class="fadeIn fourth" name="CHFunc" placeholder="Carga horaria semanal" maxlength="2">' +
     '<input type="text" id="ContaCFunc" class="fadeIn fourth" name="ContaCFunc" placeholder="Conta corrente" maxlength="32">' +
     '<input type="text" id="passwordFunc" class="fadeIn fourth" name="senhaFunc" placeholder="Senha" maxlength="32">' +
-    '<input type="submit" class="fadeIn fourth" value="Cadastar">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
     '</form>' +
     '</div>';
 
@@ -47,7 +49,7 @@ let CC = '<div id="formContent">' + '<form id="CadCli">' +
     '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf" maxlength="11"></input>' +
     '<input type="text" id="nomecli" class="fadeIn third" name="nomecli" placeholder="Nome" maxlength="100">' +
     '<input type="text" id="Telcli" class="fadeIn third" name="Telcli" placeholder="Telefone" required >' +
-    '<input type="submit" class="fadeIn fourth" value="Cadastar">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
     '</div>';
 
 let CFR = '<div id="formContent">' + '<form id="CadCFR">' +
@@ -58,14 +60,23 @@ let CFR = '<div id="formContent">' + '<form id="CadCFR">' +
     '<input type="text" id="bairrocfr" class="fadeIn third" name="bairrocfr" placeholder="Bairro">' +
     '<input type="text" id="cidadecfr" class="fadeIn third" name="cidadecfr" placeholder="Cidade">' +
     '<input type="text" id="cepcfr" class="fadeIn third" name="cepcfr" placeholder="CEP">' +
-    '<input type="submit" class="fadeIn fourth" value="Cadastar">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
     '</div>';
 let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
     '<input type="text" id="desCNT" class="fadeIn third" name="desCNT" placeholder="Descrição" maxlength="100">' +
     '<input type="text" id="VenCNT" class="fadeIn third" name="VenCNT" placeholder="Vencimento" required >' +
     '<input type="text" id="valorCNT" class="fadeIn third" name="valorCNT" placeholder="Valor" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))">' +
     '<label for="pagCNT" class="text-secondary fadeIn third">Pago</label>:<input type="checkbox" id="pagCNT" class="fadeIn third" name="pagCNT"><label class="text-secondary fadeIn third" for="pagCNT">Sim</label>' +
-    '<input type="submit" class="fadeIn fourth" value="Cadastar">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
+    '</div>';
+
+let AP = '<div id="formContent">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '</div>';
+let BAP = '<div id="formContent">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
+    '<input type="submit"  class="fadeIn fourth" value="Buscar">' +
     '</div>';
 let LP = '<table class="table">' +
     '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th></tr></thead><tbody id="tbody"></tbody></table>'
@@ -75,7 +86,14 @@ let LF = '<table class="table">' +
 
 
 
+
 $(document).ready(function () {
+
+    $("#button").click(function (e) { 
+        e.preventDefault();
+        alert("Asas")
+    });
+
     $("#home").click(function (e) {
         $(".active").removeClass("active");
         $("#home").addClass("active");
@@ -146,6 +164,13 @@ $(document).ready(function () {
         $(".masthead-brand").text("Cadastrar Fornecedor");
         $("input#Telcfr").mask("(99) 99999-999?9")
         $("input#cepcfr").mask("99999-999")
+        //$("#script").html('<script src="./js/request.js"></script>');
+    });
+    $("#AP").click(function (e) {
+        $(".active").removeClass("active");
+        $("#AP").addClass("active");
+        $("#h").empty();
+        $("#h").html(AP);
         //$("#script").html('<script src="./js/request.js"></script>');
     });
     $("#LP").click(function (e) {
