@@ -1,4 +1,5 @@
 $(function () {    
+    alert("Ta pelomenos entrando");
     $("#CadProd").submit(function (e) { 
         e.preventDefault();
         var dados_form = $(this).serialize();
@@ -7,9 +8,8 @@ $(function () {
             type: "POST",
             url: "./php/cadastroProdutos.php",
             data: dados_form,
-            dataType: "JSON",
             success: function (response) {
-                
+                alert(response);
             }
         });
     });

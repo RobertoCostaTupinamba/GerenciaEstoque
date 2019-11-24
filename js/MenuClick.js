@@ -1,4 +1,4 @@
-let cadp = '<div id="formContent">' + '<form id="CadProd">' +
+let cadp = '<div id="formContent">' + '<form id="CadProd" method="POST">' +
     '<input type="text" id="TipProd" class="fadeIn second" name="TipProd" placeholder="Tipo do Produto"></input>' +
     '<input type="text" id="MarcaProd" class="fadeIn second" name="MarcaProd" placeholder="Marca"></input>' +
     '<input type="text" id="ValorProd" class="fadeIn second" name="ValorProd" placeholder="Valor" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))"></input>' +
