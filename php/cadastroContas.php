@@ -20,12 +20,10 @@
         values('".$desc."', '".$vencimento."',".$valor.",".$pago.");";
         
         if ($res = pg_send_query($conexao,$insert)) {
-            $res1 = pg_get_result($conexao);
-            $rows = pg_num_rows($res1);
-            echo "$res1 has $rows records\n\n";
+            echo "1";
         }
         else {
-            echo "Algo de inesperado ocorreu!";
+            echo "2";
         }
         echo $string;
     }
