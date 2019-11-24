@@ -3,6 +3,7 @@
 create sequence produtos_id_seq start 1;
 create sequence fornecedores_local_id_seq start 1;
 create sequence fornecedores_produtos_id_seq start 1;
+create sequence endereco_id_seq start 2;
 --Lembrar de usar nextval para essas sequences.
 
 CREATE TABLE Produtos (
@@ -48,8 +49,8 @@ CREATE TABLE Endereco (
 CREATE TABLE Compras (
   id serial PRIMARY KEY,
   quantidade int,
-  Fornecedor_ID int
-  dataCompra date [not null]
+  Fornecedor_ID int,
+  dataCompra date not null
 );
 CREATE TABLE Pessoas (
   cpf text PRIMARY KEY,
@@ -61,9 +62,9 @@ CREATE TABLE Pessoas (
 CREATE TABLE Cliente (
   id SERIAL PRIMARY KEY,
   cpf text,
-  senha text
-  dataIngresso date [not null]
+  dataIngresso date not null
 );
+
 
 CREATE TABLE Funcionarios (
   id SERIAL PRIMARY KEY,
@@ -93,15 +94,16 @@ CREATE TABLE Contas (
   vencimento date,
   valor numeric DEFAULT 0.0,
   pago boolean not null,
-  dataConta date [not null]
+  dataConta date not null,
+  dataPago date
   check (valor >= 0)
 );
 
 CREATE TABLE Produtos_Vendidos (
   id SERIAL PRIMARY KEY,
   id_prod int NOT NULL,
-  quantidade int
-  dataVenda date [not null]
+  quantidade int,
+  dataVenda date not null
 );
 
 CREATE TABLE Vendas_Produtos_Ass (
