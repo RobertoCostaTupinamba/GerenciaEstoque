@@ -93,6 +93,7 @@
                     <h1 class="cover-heading titulo">Seja Bem Vindo!!</h1>
                     <p id="NomeUser" class="lead"></p>
                 </div>
+                
             </main>
         </div>
 

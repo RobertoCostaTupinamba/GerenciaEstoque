@@ -32,7 +32,7 @@ let cadf = '<div id="formContent">' + '<form id="CadFunc">' +
     '<input type="text" id="bairroFunc" class="fadeIn second" name="bairroFunc" placeholder="Bairro">' +
     '<input type="text" id="cidadeFunc" class="fadeIn second" name="cidadeFunc" placeholder="Cidade">' +
     '<input type="text" id="cepFunc" class="fadeIn fourth" name="cepFunc" placeholder="CEP">' +
-    '<input type="text" id="cepFunc" class="fadeIn fourth" name="cepFunc" placeholder="CEP">' +
+    '<input type="text" id="cepFunc" class="fadeIn fourth" name="cargo" placeholder="Cargo">' +
     '<input type="text" id="SalFunc" class="fadeIn fourth" name="SalFunc" placeholder="Salario" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))"></input>' +
     '<input type="text" id="nasciFunc" class="fadeIn fourth" name="nasciFunc" placeholder="Data do nascimento" maxlength="32">' +
     '<input type="text" id="DTinicioFunc" class="fadeIn fourth" name="DTinicioFunc" placeholder="Data do inicio do trabalho" maxlength="32">' +
@@ -66,7 +66,8 @@ let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
     '<input type="text" id="desCNT" class="fadeIn third" name="desCNT" placeholder="Descrição" maxlength="100">' +
     '<input type="text" id="VenCNT" class="fadeIn third" name="VenCNT" placeholder="Vencimento" required >' +
     '<input type="text" id="valorCNT" class="fadeIn third" name="valorCNT" placeholder="Valor" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))">' +
-    '<label for="pagCNT" class="text-secondary fadeIn third">Pago</label>:<input type="checkbox" id="pagCNT" class="fadeIn third" name="pagCNT"><label class="text-secondary fadeIn third" for="pagCNT">Sim</label>' +
+    '<label for="pagCNT" class="text-secondary fadeIn third">Pago: </label>'+
+    '<input type="checkbox" id="pagCNT" class="fadeIn third" value="true" name="pagCNT"><label class="text-secondary fadeIn third" for="pagCNT">Sim</label>' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
     '</div>';
 

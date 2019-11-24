@@ -13,4 +13,33 @@ $(function () {
             }
         });
     });
+
+    $("#CadCNT").submit(function(event) {
+        event.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "./php/cadastroContas.php",
+            data: data,
+            success: function(response) {
+                alert(response);
+            }
+        })
+    })
+
+    $("#CadCFR").submit(function(event) {
+        event.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+
+        $.ajax({
+            type: "POST",
+            url: "./php/cadastroFornecedor.php",
+            data: data,
+            success: function(response) {
+                alert(response);
+            }
+        })
+    });
 });
