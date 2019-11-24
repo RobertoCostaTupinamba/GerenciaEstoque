@@ -48,5 +48,13 @@ $(function () {
         var data = $(this).serialize();
         console.log(data);
         
+        $.ajax({
+            type: "POST",
+            url: "./php/cadastroFuncionarios.php",
+            data: data,
+            success: function(response) {
+                alert(response);
+            }
+        })
     })
 });
