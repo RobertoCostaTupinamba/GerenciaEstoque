@@ -1,12 +1,17 @@
 
 --------------------------- *********** Create bank of data ************ ---------------------------------------
+create sequence produtos_id_seq start 1;
+create sequence fornecedores_local_id_seq start 1;
+create sequence fornecedores_produtos_id_seq start 1;
+--Lembrar de usar nextval para essas sequences.
 
 CREATE TABLE Produtos (
-  id SERIAL PRIMARY KEY,
-  tipo text NOT NULL,
+  id int primary key,
+  tipo text ,
   marca text,
   valor numeric not null,
   tamanho text NOT NULL,
+  quantidade int not null,
   check (tamanho = 'GGG' or 
 		 tamanho = 'GG' or
 		 tamanho = 'G' or 
@@ -19,22 +24,16 @@ CREATE TABLE Produtos (
 );
 
 CREATE TABLE Fornecedores_Produtos (
-  id SERIAL PRIMARY KEY,
+  id int PRIMARY KEY,
   Fornecedor_ID int,
   Produto_ID int
 );
 
 CREATE TABLE Fornecedores_Local (
-  id SERIAL PRIMARY KEY,
+  id int PRIMARY KEY,
   nome text NOT NULL,
   telefone text,
   id_Endereco int NOT NULL
-);
-
-CREATE TABLE Estoque (
-  id int PRIMARY KEY,
-  quantidade int,
-  Produto_ID int
 );
 
 CREATE TABLE Endereco (
@@ -47,11 +46,11 @@ CREATE TABLE Endereco (
 );
 
 CREATE TABLE Compras (
-  id SERIAL PRIMARY KEY,
+  id serial PRIMARY KEY,
   quantidade int,
   Fornecedor_ID int
+  dataCompra date [not null]
 );
-
 CREATE TABLE Pessoas (
   cpf text PRIMARY KEY,
   nome text NOT NULL,
@@ -63,6 +62,7 @@ CREATE TABLE Cliente (
   id SERIAL PRIMARY KEY,
   cpf text,
   senha text
+  dataIngresso date [not null]
 );
 
 CREATE TABLE Funcionarios (
@@ -93,6 +93,7 @@ CREATE TABLE Contas (
   vencimento date,
   valor numeric DEFAULT 0.0,
   pago boolean not null,
+  dataConta date [not null]
   check (valor >= 0)
 );
 
@@ -100,6 +101,7 @@ CREATE TABLE Produtos_Vendidos (
   id SERIAL PRIMARY KEY,
   id_prod int NOT NULL,
   quantidade int
+  dataVenda date [not null]
 );
 
 CREATE TABLE Vendas_Produtos_Ass (
@@ -124,8 +126,6 @@ ALTER TABLE Fornecedores_Produtos ADD FOREIGN KEY (Fornecedor_ID) REFERENCES For
 
 ALTER TABLE Fornecedores_Produtos ADD FOREIGN KEY (Produto_ID) REFERENCES Produtos (id);
 
-ALTER TABLE Estoque ADD FOREIGN KEY (Produto_ID) REFERENCES Produtos (id);
-
 ALTER TABLE Compras ADD FOREIGN KEY (Fornecedor_ID) REFERENCES Fornecedores_Local (id);
 
 ALTER TABLE Cliente ADD FOREIGN KEY (cpf) REFERENCES Pessoas (cpf);
@@ -149,5 +149,3 @@ ALTER TABLE Produtos_Compras ADD FOREIGN KEY (id_Produtos) REFERENCES Produtos (
 ALTER TABLE Vendas_Cliente_Ass ADD FOREIGN KEY (id_Venda) REFERENCES Produtos_Vendidos (id);
 
 ALTER TABLE Vendas_Cliente_Ass ADD FOREIGN KEY (id_Cliente) REFERENCES Cliente (id);
-
-
