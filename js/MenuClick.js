@@ -49,6 +49,11 @@ let CC = '<div id="formContent">' + '<form id="CadCli">' +
     '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf" maxlength="11"></input>' +
     '<input type="text" id="nomecli" class="fadeIn third" name="nomecli" placeholder="Nome" maxlength="100">' +
     '<input type="text" id="Telcli" class="fadeIn third" name="Telcli" placeholder="Telefone" required >' +
+    '<input type="text" id="ruacli" class="fadeIn first" name="ruacli" placeholder="Rua">' +
+    '<input type="number" id="numcli" class="fadeIn second" name="numcli" placeholder="Numero">' +
+    '<input type="text" id="bairrocli" class="fadeIn second" name="bairrocli" placeholder="Bairro">' +
+    '<input type="text" id="cidadecli" class="fadeIn second" name="cidadecli" placeholder="Cidade">' +
+    '<input type="text" id="cepcli" class="fadeIn fourth" name="cepcli" placeholder="CEP">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
     '</div>';
 
@@ -128,6 +133,7 @@ $(document).ready(function () {
         $("#nasciFunc").mask("99/99/9999");
         $("#DTinicioFunc").mask("99/99/9999");
         $("input#ContaCFunc").mask("99999-9");
+        $("input#cepFunc").mask("99999-999")
         $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#CC").click(function (e) {
@@ -138,6 +144,7 @@ $(document).ready(function () {
         $(".masthead-brand").text("Cadastrar Cliente");
         $("input#Telcli").mask("(99) 99999-999?9")
         $("#cpfcli").mask("999.999.999-99");
+        $("input#cepcli").mask("99999-999")
         $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#CNT").click(function (e) {
