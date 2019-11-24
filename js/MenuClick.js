@@ -55,6 +55,7 @@ let CC = '<div id="formContent">' + '<form id="CadCli">' +
     '<input type="text" id="cidadecli" class="fadeIn third" name="cidadecli" placeholder="Cidade">' +
     '<input type="text" id="cepcli" class="fadeIn third" name="cepcli" placeholder="CEP">' +
     '<input type="submit" id="button" class="fadeIn third" value="Cadastar">' +
+    '</form>' +
     '</div>';
 
 let CFR = '<div id="formContent">' + '<form id="CadCFR">' +
@@ -66,6 +67,7 @@ let CFR = '<div id="formContent">' + '<form id="CadCFR">' +
     '<input type="text" id="cidadecfr" class="fadeIn third" name="cidadecfr" placeholder="Cidade">' +
     '<input type="text" id="cepcfr" class="fadeIn third" name="cepcfr" placeholder="CEP">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
+    '</form>' +
     '</div>';
 let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
     '<input type="text" id="desCNT" class="fadeIn third" name="desCNT" placeholder="Descrição" maxlength="100">' +
@@ -74,11 +76,13 @@ let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
     '<label for="pagCNT" class="text-secondary fadeIn third">Pago: </label>'+
     '<input type="checkbox" id="pagCNT" class="fadeIn third" value="true" name="pagCNT"><label class="text-secondary fadeIn third" for="pagCNT">Sim</label>' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
+    '</form>' +
     '</div>';
 
-let AP = '<div id="formContent">' +
+let AP = '<div id="formContent">' +'<form id="AtualizarProd">'
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '</form>' +
     '</div>';
 let BAP = '<div id="formContent">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
