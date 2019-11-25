@@ -1,4 +1,5 @@
 let cadp = '<div id="formContent">' + '<form id="CadProd" method="POST">' +
+    '<input type="text" id="CodProd" class="fadeIn second" name="CodProd" placeholder="Identificação"></input>' +
     '<input type="text" id="TipProd" class="fadeIn second" name="TipProd" placeholder="Tipo do Produto"></input>' +
     '<input type="text" id="MarcaProd" class="fadeIn second" name="MarcaProd" placeholder="Marca"></input>' +
     '<input type="text" id="ValorProd" class="fadeIn second" name="ValorProd" placeholder="Valor" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))"></input>' +
@@ -73,17 +74,17 @@ let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
     '<input type="text" id="desCNT" class="fadeIn third" name="desCNT" placeholder="Descrição" maxlength="100">' +
     '<input type="text" id="VenCNT" class="fadeIn third" name="VenCNT" placeholder="Vencimento" required >' +
     '<input type="text" id="valorCNT" class="fadeIn third" name="valorCNT" placeholder="Valor" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))">' +
-    '<label for="pagCNT" class="text-secondary fadeIn third">Pago: </label>'+
+    '<label for="pagCNT" class="text-secondary fadeIn third">Pago: </label>' +
     '<input type="checkbox" id="pagCNT" class="fadeIn third" value="true" name="pagCNT"><label class="text-secondary fadeIn third" for="pagCNT">Sim</label>' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
     '</form>' +
     '</div>';
 
-let AP = '<div id="formContent">' +'<form id="AtualizarProd">'
-    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
-    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
-    '</form>' +
-    '</div>';
+let AP = '<div id="formContent">' + '<form id="AtualizarProd">'+
+'<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
+'<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+'</form>' +
+'</div>';
 let BAP = '<div id="formContent">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
     '<input type="submit"  class="fadeIn fourth" value="Buscar">' +
