@@ -72,11 +72,12 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" id="AC" href="#">Cliente</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" id="AFR" href="#">Fornecedor</a>
+                                    <a class="dropdown-item" id="ACFR" href="#">Fornecedor</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" id="ANT" href="#">Contas</a>
+                                    <a class="dropdown-item" id="ACNT" href="#">Contas</a>
                                 </div>
                             </li>
+                            <a class="nav-link" >Tela de Vendas</a>
                             <a class="nav-link" id="LP">Deletar</a>
                             <a class="nav-link" id="LF">Listar</a>
                         </div>

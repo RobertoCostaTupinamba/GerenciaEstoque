@@ -80,14 +80,38 @@ let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
     '</form>' +
     '</div>';
 
-let AP = '<div id="formContent">' + '<form id="AtualizarProd">'+
-'<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
-'<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
-'</form>' +
-'</div>';
+let AP = '<div id="formContent">' + '<form id="AtualizarProd">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '</form>' +
+    '</div>';
 let BAP = '<div id="formContent">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
     '<input type="submit"  class="fadeIn fourth" value="Buscar">' +
+    '</div>';
+
+let AF = '<div id="formContent">' + '<form id="AtualizarFuncionario">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do Funcionario">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '</form>' +
+    '</div>';
+
+let AC = '<div id="formContent">' + '<form id="AtualizarCliente">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do Cliente">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '</form>' +
+    '</div>';
+
+let ACFR = '<div id="formContent">' + '<form id="AtualizarFornecedor">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do Fornecedor">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '</form>' +
+    '</div>';
+
+let ACNT = '<div id="formContent">' + '<form id="AtualizarContas">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo da Conta">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '</form>' +
     '</div>';
 let LP = '<table class="table">' +
     '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th></tr></thead><tbody id="tbody"></tbody></table>'
@@ -176,8 +200,41 @@ $(document).ready(function () {
     $("#AP").click(function (e) {
         $(".active").removeClass("active");
         $("#AP").addClass("active");
+        $(".masthead-brand").text("Atualizar Produto");
         $("#h").empty();
         $("#h").html(AP);
+        $("#script").html('<script src="./js/request.js"></script>');
+    });
+    $("#AF").click(function (e) {
+        $(".active").removeClass("active");
+        $("#AF").addClass("active");
+        $(".masthead-brand").text("Atualizar Funcionario");
+        $("#h").empty();
+        $("#h").html(AF);
+        $("#script").html('<script src="./js/request.js"></script>');
+    });
+    $("#AC").click(function (e) {
+        $(".active").removeClass("active");
+        $("#AC").addClass("active");
+        $(".masthead-brand").text("Atualizar Cliente");
+        $("#h").empty();
+        $("#h").html(AC);
+        $("#script").html('<script src="./js/request.js"></script>');
+    });
+    $("#ACFR").click(function (e) {
+        $(".active").removeClass("active");
+        $("#ACFR").addClass("active");
+        $(".masthead-brand").text("Atualizar Fornecedor");
+        $("#h").empty();
+        $("#h").html(ACFR);
+        $("#script").html('<script src="./js/request.js"></script>');
+    });
+    $("#ACNT").click(function (e) {
+        $(".active").removeClass("active");
+        $("#ACNT").addClass("active");
+        $(".masthead-brand").text("Atualizar Contas");
+        $("#h").empty();
+        $("#h").html(ACNT);
         $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#LP").click(function (e) {
