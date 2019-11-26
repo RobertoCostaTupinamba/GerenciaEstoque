@@ -25,7 +25,6 @@
         else {
             echo "2";
         }
-        echo $string;
     }
     pg_close($conexao);
 ?>

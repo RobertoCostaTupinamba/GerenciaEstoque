@@ -20,7 +20,6 @@
         else {
             echo "2";
         }
-
     }
-    
+    pg_close($conexao);
 ?>

@@ -101,9 +101,26 @@ $(function () {
         $("#APrazo").html(prazo);
         
     });
+<<<<<<< HEAD
     $("#vista").click(function (e) { 
         console.log("Asasasasas");
         $("#APrazo").empty();
         
+=======
+
+    $("#CadCli").submit(function(event) {
+        event.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+
+        $.ajax({
+            type: "POST",
+            url: "./php/cadastroCliente.php",
+            data: data,
+            success: function(response) {
+                alert(response);
+            }
+        })
+>>>>>>> 73ddecb0fd1ff1ed3bdfa909ae0958868a9793fd
     });
 });

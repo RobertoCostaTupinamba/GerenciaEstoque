@@ -1,6 +1,7 @@
 <?php
     include_once("./conexao.php");
     
+    $id_prod = $_POST['CodProd'];
     $tipoProd = $_POST["TipProd"];
     $marcaProd = $_POST["MarcaProd"];
     $valorProd = $_POST["ValorProd"];
@@ -13,7 +14,7 @@
     $valorProd = str_replace("," , ".", $valorProd);
 
    if ($conexao) {
-        $insert = "select transacao_Compra_Fornecedor('".$tipoProd."','".$marcaProd."',".
+        $insert = "select transacao_Compra_Fornecedor('".$id_prod."','".$tipoProd."','".$marcaProd."',".
         $valorProd.",'". $tam ."',". $qntProd .",".$id_fornecedor.");";
         if ($res = pg_send_query($conexao, $insert)) {
             echo "1";
