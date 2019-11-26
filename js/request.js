@@ -120,7 +120,8 @@ $(function () {
         })
     });
 
-    let AtualizarProd = '<input type="text" id="TipProd" class="fadeIn second" name="TipProd" placeholder="Tipo do Produto"></input>' +
+    let AtualizarProd = '<input type="text" id="CodProd" class="fadeIn second" name="CodProd" placeholder="Identificação"></input>' +
+    '<input type="text" id="TipProd" class="fadeIn second" name="TipProd" placeholder="Tipo do Produto"></input>' +
     '<input type="text" id="MarcaProd" class="fadeIn second" name="MarcaProd" placeholder="Marca"></input>' +
     '<input type="text" id="ValorProd" class="fadeIn second" name="ValorProd" placeholder="Valor" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))"></input>' +
     '<input type="text" id="QTDProd" class="fadeIn second" name="QTDProd" placeholder="Quantidade"></input>' +
@@ -140,14 +141,43 @@ $(function () {
     '<option value="null" disabled selected>Selecionar Fornecedor</option>' +
     '<option value="1">1</option> ' +
     '</select>' +
-    '<input type="submit" class="fadeIn fourth" value="Cadastar">' ;
+    '<input type="submit" class="fadeIn fourth" value="Atualizar">' ;
     $("#AtualizarProd").submit(function (e) { 
         e.preventDefault();
         //chamada ajax se deer certo mostra os dados
         $("#AtualizarProdu").html(AtualizarProd);
+        
 
         $("#tamanho").val("P"); // exemplo de como selecinar 
         $("#fornecedor").val("1");// exemplo de como selecinar 
         
+    });
+
+    let atualizarFunc = '<input type="text" id="cpfFunc" class="fadeIn first" name="cpfFunc" placeholder="Cpf" maxlength="11"></input>' +
+    '<input type="text" id="nomeFunc" class="fadeIn first" name="nomeFunc" placeholder="Nome" maxlength="100">' +
+    '<input type="text" id="TelFunc" class="fadeIn first" name="TelFunc" placeholder="Telefone" required >' +
+    '<input type="text" id="ruaFunc" class="fadeIn first" name="ruaFunc" placeholder="Rua">' +
+    '<input type="number" id="numFunc" class="fadeIn second" name="numFunc" placeholder="Numero">' +
+    '<input type="text" id="bairroFunc" class="fadeIn second" name="bairroFunc" placeholder="Bairro">' +
+    '<input type="text" id="cidadeFunc" class="fadeIn second" name="cidadeFunc" placeholder="Cidade">' +
+    '<input type="text" id="cepFunc" class="fadeIn fourth" name="cepFunc" placeholder="CEP">' +
+    '<input type="text" id="cargoFunc" class="fadeIn fourth" name="cargo" placeholder="Cargo">' +
+    '<input type="text" id="SalFunc" class="fadeIn fourth" name="SalFunc" placeholder="Salario" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))"></input>' +
+    '<input type="text" id="nasciFunc" class="fadeIn fourth" name="nasciFunc" placeholder="Data do nascimento" maxlength="32">' +
+    '<input type="text" id="DTinicioFunc" class="fadeIn fourth" name="DTinicioFunc" placeholder="Data do inicio do trabalho" maxlength="32">' +
+    '<input type="text" id="CHFunc" class="fadeIn fourth" name="CHFunc" placeholder="Carga horaria semanal" maxlength="2">' +
+    '<input type="text" id="ContaCFunc" class="fadeIn fourth" name="ContaCFunc" placeholder="Conta corrente" maxlength="32">' +
+    '<input type="text" id="passwordFunc" class="fadeIn fourth" name="senhaFunc" placeholder="Senha" maxlength="32">'+
+    '<input type="submit" class="fadeIn fourth" value="Atualizar">';
+
+    $("#AtualizarFuncionario").submit(function (e) { 
+        e.preventDefault();
+        $("#AtualizarFunc").html(atualizarFunc);
+        $("input#TelFunc").mask("(99) 99999-999?9")
+        $("#cpfFunc").mask("999.999.999-99");
+        $("#nasciFunc").mask("99/99/9999");
+        $("#DTinicioFunc").mask("99/99/9999");
+        $("input#ContaCFunc").mask("99999-9");
+        $("input#cepFunc").mask("99999-999")
     });
 });

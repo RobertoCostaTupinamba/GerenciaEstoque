@@ -87,19 +87,17 @@ let AP = '<div id="formContent">' + '<form id="AtualizarProd">' +
     '</div>'+
     '</form>' +
     '</div>';
-let BAP = '<div id="formContent">' +
-    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
-    '<input type="submit"  class="fadeIn fourth" value="Buscar">' +
-    '</div>';
 
 let AF = '<div id="formContent">' + '<form id="AtualizarFuncionario">' +
-    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do Funcionario">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="CPF do Funcionario">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '<div id="AtualizarFunc">'+
+    '</div>'+
     '</form>' +
     '</div>';
 
 let AC = '<div id="formContent">' + '<form id="AtualizarCliente">' +
-    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do Cliente">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="CPF do Cliente">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
     '</form>' +
     '</div>';
