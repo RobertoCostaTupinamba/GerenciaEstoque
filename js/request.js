@@ -91,7 +91,7 @@ $(function () {
     })
     $("#Venda").submit(function(event) {
         event.preventDefault();
-        var var_name = $("input[name='FormaDePagamento']:checked").val();
+        var var_name = $("#parcela").val();
         console.log(var_name);
         
     })
@@ -99,6 +99,11 @@ $(function () {
     $("#prazo").click(function (e) { 
         console.log("Asasasasas");
         $("#APrazo").html(prazo);
+        
+    });
+    $("#vista").click(function (e) { 
+        console.log("Asasasasas");
+        $("#APrazo").empty();
         
     });
 });
