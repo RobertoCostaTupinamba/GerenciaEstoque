@@ -172,6 +172,7 @@ $(function () {
 
     $("#AtualizarFuncionario").submit(function (e) { 
         e.preventDefault();
+        //ajax
         $("#AtualizarFunc").html(atualizarFunc);
         $("input#TelFunc").mask("(99) 99999-999?9")
         $("#cpfFunc").mask("999.999.999-99");
@@ -180,4 +181,24 @@ $(function () {
         $("input#ContaCFunc").mask("99999-9");
         $("input#cepFunc").mask("99999-999")
     });
+
+    let atualizarCliente = '<input type="text" id="cpfcli" class="fadeIn first" name="cpfcli" placeholder="Cpf" maxlength="11"></input>' +
+    '<input type="text" id="nomecli" class="fadeIn first" name="nomecli" placeholder="Nome" maxlength="100">' +
+    '<input type="text" id="Telcli" class="fadeIn second" name="Telcli" placeholder="Telefone" required >' +
+    '<input type="text" id="ruacli" class="fadeIn second" name="ruacli" placeholder="Rua">' +
+    '<input type="number" id="numcli" class="fadeIn second" name="numcli" placeholder="Numero">' +
+    '<input type="text" id="bairrocli" class="fadeIn second" name="bairrocli" placeholder="Bairro">' +
+    '<input type="text" id="cidadecli" class="fadeIn third" name="cidadecli" placeholder="Cidade">' +
+    '<input type="text" id="cepcli" class="fadeIn third" name="cepcli" placeholder="CEP">' +
+    '<input type="submit" class="fadeIn fourth" value="Atualizar">';
+
+    $("#AtualizarCliente").submit(function (e) { 
+        e.preventDefault();
+        //ajax
+        $("#AtualizarCLI").html(atualizarCliente);
+        $("input#Telcli").mask("(99) 99999-999?9")
+        $("#cpfcli").mask("999.999.999-99");
+        $("input#cepcli").mask("99999-999")
+    });
+    
 });

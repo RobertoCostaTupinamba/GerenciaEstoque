@@ -60,6 +60,7 @@ let CC = '<div id="formContent">' + '<form id="CadCli">' +
     '</div>';
 
 let CFR = '<div id="formContent">' + '<form id="CadCFR">' +
+    '<input type="text" id="codcfr" class="fadeIn first" name="codcfr" placeholder="Codigo fornecedor" maxlength="11"></input>' +
     '<input type="text" id="nomecfr" class="fadeIn third" name="nomecfr" placeholder="Nome" maxlength="100">' +
     '<input type="text" id="Telcfr" class="fadeIn third" name="Telcfr" placeholder="Telefone" required >' +
     '<input type="text" id="ruacfr" class="fadeIn third" name="ruacfr" placeholder="Rua">' +
@@ -83,22 +84,24 @@ let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
 let AP = '<div id="formContent">' + '<form id="AtualizarProd">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
-    '<div id="AtualizarProdu">'+
-    '</div>'+
+    '<div id="AtualizarProdu">' +
+    '</div>' +
     '</form>' +
     '</div>';
 
 let AF = '<div id="formContent">' + '<form id="AtualizarFuncionario">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="CPF do Funcionario">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
-    '<div id="AtualizarFunc">'+
-    '</div>'+
+    '<div id="AtualizarFunc">' +
+    '</div>' +
     '</form>' +
     '</div>';
 
 let AC = '<div id="formContent">' + '<form id="AtualizarCliente">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="CPF do Cliente">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '<div id="AtualizarCLI">' +
+    '</div>' +
     '</form>' +
     '</div>';
 
@@ -118,17 +121,17 @@ let TDV = '<div id="formContent">' + '<form id="Venda">' +
     '<input type="text" id="cdg" class="fadeIn first" name="cdg" placeholder="Codigo do Produto">' +
     '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf do Cliente" maxlength="11"></input>' +
     '<input type="text" id="QTDProd" class="fadeIn second" name="QTDProd" placeholder="Quantidade"></input>' +
-    '<div>'+
-        '<label for="pagCNT" class="text-secondary fadeIn third">Forma de Pagamento: </label> <br>' +
-        '<input type="radio" id="vista" class="fadeIn third" value="Vista" name="FormaDePagamento"><label class="text-secondary fadeIn third" for="pagCNT">A vista</label> <br>' +
-        '<input type="radio" id="prazo" class="fadeIn third" value="Prazo" name="FormaDePagamento"><label class="text-secondary fadeIn third" for="pagCNT">A prazo</label>' + 
-    '</div>'+
-    '<div id="APrazo">'+
-    '</div>'+
+    '<div>' +
+    '<label for="pagCNT" class="text-secondary fadeIn third">Forma de Pagamento: </label> <br>' +
+    '<input type="radio" id="vista" class="fadeIn third" value="Vista" name="FormaDePagamento"><label class="text-secondary fadeIn third" for="pagCNT">A vista</label> <br>' +
+    '<input type="radio" id="prazo" class="fadeIn third" value="Prazo" name="FormaDePagamento"><label class="text-secondary fadeIn third" for="pagCNT">A prazo</label>' +
+    '</div>' +
+    '<div id="APrazo">' +
+    '</div>' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Registrar Venda">' +
     '</form>' +
     '</div>';
-   
+
 let LP = '<table class="table">' +
     '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th></tr></thead><tbody id="tbody"></tbody></table>'
 
@@ -136,7 +139,7 @@ let LF = '<table class="table">' +
     '<thead><tr><th scope="col">CPF</th><th scope="col">Nome</th></tr></thead><tbody id="tbody"></tbody></table>'
 
 
- // first second third fourth
+// first second third fourth
 
 $(document).ready(function () {
 
