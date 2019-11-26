@@ -108,12 +108,16 @@ let AC = '<div id="formContent">' + '<form id="AtualizarCliente">' +
 let ACFR = '<div id="formContent">' + '<form id="AtualizarFornecedor">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do Fornecedor">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '<div id="AtualizarFornec">' +
+    '</div>' +
     '</form>' +
     '</div>';
 
 let ACNT = '<div id="formContent">' + '<form id="AtualizarContas">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo da Conta">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '<div id="AtualizarConta">' +
+    '</div>' +
     '</form>' +
     '</div>';
 

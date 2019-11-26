@@ -201,4 +201,38 @@ $(function () {
         $("input#cepcli").mask("99999-999")
     });
     
+    let atualizarFornecedor = '<input type="text" id="codcfr" class="fadeIn first" name="codcfr" placeholder="Codigo fornecedor" maxlength="11"></input>' +
+    '<input type="text" id="nomecfr" class="fadeIn third" name="nomecfr" placeholder="Nome" maxlength="100">' +
+    '<input type="text" id="Telcfr" class="fadeIn third" name="Telcfr" placeholder="Telefone" required >' +
+    '<input type="text" id="ruacfr" class="fadeIn third" name="ruacfr" placeholder="Rua">' +
+    '<input type="number" id="numcfr" class="fadeIn third" name="numcfr" placeholder="Numero">' +
+    '<input type="text" id="bairrocfr" class="fadeIn third" name="bairrocfr" placeholder="Bairro">' +
+    '<input type="text" id="cidadecfr" class="fadeIn third" name="cidadecfr" placeholder="Cidade">' +
+    '<input type="text" id="cepcfr" class="fadeIn third" name="cepcfr" placeholder="CEP">' +
+    '<input type="submit" class="fadeIn fourth" value="Atualizar">';
+
+    $("#AtualizarFornecedor").submit(function (e) { 
+        e.preventDefault();
+        //ajax
+        $("#AtualizarFornec").html(atualizarFornecedor);
+        $("input#Telcfr").mask("(99) 99999-999?9")
+        $("input#cepcfr").mask("99999-999")
+    });
+
+
+    let atualizarContas = '<input type="text" id="desCNT" class="fadeIn third" name="desCNT" placeholder="Descrição" maxlength="100">' +
+    '<input type="text" id="VenCNT" class="fadeIn third" name="VenCNT" placeholder="Vencimento" required >' +
+    '<input type="text" id="valorCNT" class="fadeIn third" name="valorCNT" placeholder="Valor" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))">' +
+    '<label for="pagCNT" class="text-secondary fadeIn third">Pago: </label>' +
+    '<input type="checkbox" id="pagCNT" class="fadeIn third" value="true" name="pagCNT"><label class="text-secondary fadeIn third" for="pagCNT">Sim</label>' +
+    '<input type="submit" class="fadeIn fourth" value="Atualizar">';
+
+    $("#AtualizarContas").submit(function (e) { 
+        e.preventDefault();
+        $("#AtualizarConta").html(atualizarContas);
+        $("input#Telcli").mask("(99) 99999-999?9")
+        $("#cpfcli").mask("999.999.999-99");
+        $("#VenCNT").mask("99/99/9999");
+        $("#pagCNT").attr("checked", true);// exemplo
+    });
 });
