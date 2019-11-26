@@ -16,9 +16,8 @@ let cadp = '<div id="formContent">' + '<form id="CadProd" method="POST">' +
     '<option value="GG">GG</option>' +
     '<option value="GGG">GGG</option>' +
     '</select>' +
-    '<select class="fadeIn third" name="select1">' +
+    '<select class="fadeIn third" id="fornecedorSelect" name="select1">' +
     '<option value="null" disabled selected>Selecionar Fornecedor</option>' +
-    '<option value="1">1</option> ' +
     '</select>' +
     '<input type="submit" class="fadeIn fourth" value="Cadastar">' +
     '</form>' +
@@ -175,6 +174,26 @@ $(document).ready(function () {
         $("#h").html(cadp);
         $(".masthead-brand").text("Cadastrar Produtos");
         $("#script").html('<script src="./js/request.js"></script>');
+        $.ajax({
+            type: "GET",
+            url: "./php/selecionarTodosFornecedores.php",
+            success: function (response) {
+                console.log(response);
+                // let teste = [{
+                //     nome: 'roberto',
+                //     idade: 20
+                // },
+                // {
+                //     nome:'Jose',
+                //     idade:15
+                // }]
+                // console.log(teste);
+                for (const key in response) {
+                    $('#fornecedorSelect').append('<option value="'+response[key].id+'">'+response[key].id+' - '+response[key].nome+'</option>');
+                }
+                
+            }
+        });
     });
     $("#CF").click(function (e) {
         $(".active").removeClass("active");

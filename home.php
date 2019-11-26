@@ -78,6 +78,7 @@
                                 </div>
                             </li>
                             <a class="nav-link" id="TDV" >Tela de Vendas</a>
+                            <a class="nav-link" id="TDV" >Pagamento de Parcelas</a>
                             <a class="nav-link" id="LP">Deletar</a>
                             <a class="nav-link" id="LF">Listar</a>
                         </div>
