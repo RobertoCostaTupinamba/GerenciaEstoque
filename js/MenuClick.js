@@ -83,6 +83,8 @@ let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
 let AP = '<div id="formContent">' + '<form id="AtualizarProd">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '<div id="AtualizarProdu">'+
+    '</div>'+
     '</form>' +
     '</div>';
 let BAP = '<div id="formContent">' +
