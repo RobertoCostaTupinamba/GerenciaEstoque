@@ -19,7 +19,7 @@
         $insert = "insert into contas(descricao, vencimento, valor, pago) 
         values('".$desc."', '".$vencimento."',".$valor.",".$pago.");";
         
-        if ($res = pg_send_query($conexao,$insert)) {
+        if ($res = pg_query($conexao,$insert)) {
             echo "1";
         }
         else {

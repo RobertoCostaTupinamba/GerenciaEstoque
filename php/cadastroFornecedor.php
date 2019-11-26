@@ -1,6 +1,7 @@
 <?php
     include_once("./conexao.php");
 
+    $id = $_POST['codcfr'];
     $nome = $_POST["nomecfr"];
     $telefone = $_POST["Telcfr"];
     $rua = $_POST["ruacfr"];
@@ -11,11 +12,11 @@
 
     if ($conexao) {
 
-        $insert = "select cadastrar_Fornecedor_Endereco('".$nome."','".$telefone."',
+        $insert = "select cadastrar_Fornecedor_Endereco('".$id."','".$nome."','".$telefone."',
         '".$rua."',".$numero.",'".$bairro."','".$cidade."','".$cep."');";
         
         if ($res = pg_send_query($conexao, $insert)) {
-            echo "1";
+            echo "$res";
         }
         else {
             echo "2";
