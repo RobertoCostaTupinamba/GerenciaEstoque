@@ -101,4 +101,19 @@ $(function () {
         $("#APrazo").html(prazo);
         
     });
+
+    $("#CadCli").submit(function(event) {
+        event.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+
+        $.ajax({
+            type: "POST",
+            url: "./php/cadastroCliente.php",
+            data: data,
+            success: function(response) {
+                alert(response);
+            }
+        })
+    });
 });

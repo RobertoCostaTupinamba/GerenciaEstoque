@@ -17,18 +17,21 @@
     $contaCorrente = $_POST['ContaCFunc'];
     $senha = $_POST['senhaFunc'];
 
-    if ($conexao) {
-        $insert = "select cadastrar_Funcionario_Endereco('".$cpf."','".$nome."' , '".$telefone."'
-        ,'".$rua."',".$numero.",'".$bairro."','".$cidade."','".$cep."');";
+    //Tratamento de mascaras.
+    $salario = str_replace(".", "", $salario);
+    $salario = str_replace(",", ".", $salario);
 
-        if ($res = pg_send_query($conexao, $insert)) {
-            $res1 = pg_get_result($conexao);
-            $rows = pg_num_rows($res1);
-            echo "$res1 has $rows records\n\n";
+    if ($conexao) {
+        $insert = "select cadastrar_Funcionario_Endereco('".$cpf."','".$nome."', '".$telefone."','"
+        .$rua."',".$numero.",'".$bairro."','".$cidade."','".$cep."','".$cargo."',".$salario.",'"
+        .$dataNascimento."','".$dataInicio."',".$cargaHoraria.",'".$contaCorrente."','".$senha."');";
+        
+        if ($res = pg_query($conexao, $insert)) {
+            echo "1";
         }
         else {
-            echo "Algo inesperado ocorreu!";
+            echo "2";
         }
     }
-
+    pg_close($conexao);
 ?>
