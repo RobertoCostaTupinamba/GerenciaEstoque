@@ -32,6 +32,14 @@ $(function () {
             data: data,
             success: function(response) {
                 alert(response);
+                if(response == 1) {
+                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
+                }else{
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
+                }
+                setTimeout(function exluiAviso() {                
+                    $("#mensagemDiv").empty();
+                }, 2000);
             }
         })
     })
@@ -47,6 +55,14 @@ $(function () {
             data: data,
             success: function(response) {
                 alert(response);
+                if(response == 1) {
+                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
+                }else{
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
+                }
+                setTimeout(function exluiAviso() {                
+                    $("#mensagemDiv").empty();
+                }, 2000);
             }
         })
     });
@@ -62,7 +78,27 @@ $(function () {
             data: data,
             success: function(response) {
                 alert(response);
+                if(response == 1) {
+                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
+                }else{
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
+                }
+                setTimeout(function exluiAviso() {                
+                    $("#mensagemDiv").empty();
+                }, 2000);
             }
         })
     })
+    $("#Venda").submit(function(event) {
+        event.preventDefault();
+        var var_name = $("input[name='FormaDePagamento']:checked").val();
+        console.log(var_name);
+        
+    })
+    let prazo = '<input type="text" id="parcela" class="fadeIn first" name="parcela" placeholder="Numero de parcelas">'
+    $("#prazo").click(function (e) { 
+        console.log("Asasasasas");
+        $("#APrazo").html(prazo);
+        
+    });
 });

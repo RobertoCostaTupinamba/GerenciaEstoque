@@ -113,6 +113,22 @@ let ACNT = '<div id="formContent">' + '<form id="AtualizarContas">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
     '</form>' +
     '</div>';
+
+let TDV = '<div id="formContent">' + '<form id="Venda">' +
+    '<input type="text" id="cdg" class="fadeIn first" name="cdg" placeholder="Codigo do Produto">' +
+    '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf do Cliente" maxlength="11"></input>' +
+    '<input type="text" id="QTDProd" class="fadeIn second" name="QTDProd" placeholder="Quantidade"></input>' +
+    '<div>'+
+        '<label for="pagCNT" class="text-secondary fadeIn third">Forma de Pagamento: </label> <br>' +
+        '<input type="radio" class="fadeIn third" value="Vista" name="FormaDePagamento"><label class="text-secondary fadeIn third" for="pagCNT">A vista</label> <br>' +
+        '<input type="radio" id="prazo" class="fadeIn third" value="Prazo" name="FormaDePagamento"><label class="text-secondary fadeIn third" for="pagCNT">A prazo</label>' + 
+    '</div>'+
+    '<div id="APrazo">'+
+    '</div>'+
+    '<input type="submit" id="button" class="fadeIn fourth" value="Registrar Venda">' +
+    '</form>' +
+    '</div>';
+   
 let LP = '<table class="table">' +
     '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th></tr></thead><tbody id="tbody"></tbody></table>'
 
@@ -120,9 +136,11 @@ let LF = '<table class="table">' +
     '<thead><tr><th scope="col">CPF</th><th scope="col">Nome</th></tr></thead><tbody id="tbody"></tbody></table>'
 
 
-
+ // first second third fourth
 
 $(document).ready(function () {
+
+
 
     $("#home").click(function (e) {
         $(".active").removeClass("active");
@@ -237,6 +255,15 @@ $(document).ready(function () {
         $("#h").html(ACNT);
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    $("#TDV").click(function (e) {
+        $(".active").removeClass("active");
+        $("#TDV").addClass("active");
+        $(".masthead-brand").text("Atualizar Contas");
+        $("#h").empty();
+        $("#h").html(TDV);
+        $("#script").html('<script src="./js/request.js"></script>');
+    });
+
     $("#LP").click(function (e) {
         $(".active").removeClass("active");
         $("#LP").addClass("active");
