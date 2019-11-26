@@ -101,12 +101,11 @@ $(function () {
         $("#APrazo").html(prazo);
         
     });
-<<<<<<< HEAD
+
     $("#vista").click(function (e) { 
         console.log("Asasasasas");
         $("#APrazo").empty();
-        
-=======
+    });
 
     $("#CadCli").submit(function(event) {
         event.preventDefault();
@@ -121,6 +120,5 @@ $(function () {
                 alert(response);
             }
         })
->>>>>>> 73ddecb0fd1ff1ed3bdfa909ae0958868a9793fd
     });
 });
