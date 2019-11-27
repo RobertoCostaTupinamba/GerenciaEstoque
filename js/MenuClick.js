@@ -121,9 +121,13 @@ let ACNT = '<div id="formContent">' + '<form id="AtualizarContas">' +
     '</div>';
 
 let TDV = '<div id="formContent">' + '<form id="Venda">' +
-    '<input type="text" id="cdg" class="fadeIn first" name="cdg" placeholder="Codigo do Produto">' +
+    '<div>'+
     '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf do Cliente" maxlength="11"></input>' +
+    '</div>'+
+    '<input type="text" id="cdg" class="fadeIn first" name="cdg" placeholder="Codigo do Produto">' +
     '<input type="text" id="QTDProd" class="fadeIn second" name="QTDProd" placeholder="Quantidade"></input>' +
+    '<button>Adicionar</button>'+
+    '<button>Remover</button>'+
     '<div>' +
     '<label for="pagCNT" class="text-secondary fadeIn third">Forma de Pagamento: </label> <br>' +
     '<input type="radio" id="vista" class="fadeIn third" value="Vista" name="FormaDePagamento"><label class="text-secondary fadeIn third" for="pagCNT">A vista</label> <br>' +
