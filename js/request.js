@@ -1,5 +1,4 @@
 $(function () {    
-    alert("Ta pelomenos entrando");
     $("#CadProd").submit(function (e) { 
         e.preventDefault();
         var dados_form = $(this).serialize();
@@ -89,6 +88,20 @@ $(function () {
             }
         })
     })
+    //Atualizar produtos.
+    $("#AtualizarProd").submit(function (event) {
+        event.preventDefault();
+        var data = $(this).serialize();
+        $.ajax({
+            type: "GET",
+            url: "./php/consultaProdutos.php",
+            data: data,
+            success: function(response) {
+                alert(response);
+            }
+        })
+    });
+    
     $("#Venda").submit(function(event) {
         event.preventDefault();
         var var_name = $("#parcela").val();
