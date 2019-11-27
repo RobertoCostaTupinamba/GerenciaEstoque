@@ -1,13 +1,16 @@
 
 --------------------------- *********** Create bank of data ************ ---------------------------------------
-create sequence produtos_id_seq start 1;
-create sequence fornecedores_local_id_seq start 1;
+
+--Sequences.
+--create sequence fornecedores_local_id_seq start 1;
 create sequence fornecedores_produtos_id_seq start 1;
 create sequence endereco_id_seq start 2;
+create sequence cargo_id_seq start 1;
+
 --Lembrar de usar nextval para essas sequences.
 
 CREATE TABLE Produtos (
-  id int primary key,
+  id text primary key,
   tipo text ,
   marca text,
   valor numeric not null,
@@ -26,12 +29,12 @@ CREATE TABLE Produtos (
 
 CREATE TABLE Fornecedores_Produtos (
   id int PRIMARY KEY,
-  Fornecedor_ID int,
+  Fornecedor_ID text,
   Produto_ID int
 );
 
 CREATE TABLE Fornecedores_Local (
-  id int PRIMARY KEY,
+  id text PRIMARY KEY,
   nome text NOT NULL,
   telefone text,
   id_Endereco int NOT NULL
@@ -49,7 +52,7 @@ CREATE TABLE Endereco (
 CREATE TABLE Compras (
   id serial PRIMARY KEY,
   quantidade int,
-  Fornecedor_ID int,
+  Fornecedor_ID text,
   dataCompra date not null
 );
 CREATE TABLE Pessoas (
@@ -60,21 +63,18 @@ CREATE TABLE Pessoas (
 );
 
 CREATE TABLE Cliente (
-  id SERIAL PRIMARY KEY,
-  cpf text,
+  cpf text primary key,
   dataIngresso date not null
 );
 
-
 CREATE TABLE Funcionarios (
-  id SERIAL PRIMARY KEY,
-  senha text NOT NULL,
   cpf text not null,
+  senha text NOT NULL,
   id_cargo int,
   salario numeric DEFAULT 0.0,
   data_nascimento date,
   carga_horaria int not null,
-  conta_corrente int not null,
+  conta_corrente text not null,
   dt_inicio_trab date not null,
   dt_fim_trab date,
   motivo text,
@@ -84,17 +84,18 @@ CREATE TABLE Funcionarios (
 );
 
 CREATE TABLE Cargo (
-  id SERIAL PRIMARY KEY,
+  id int PRIMARY KEY,
   tipo text
 );
+
 
 CREATE TABLE Contas (
   id SERIAL PRIMARY KEY,
   descricao text default 'N.A. Info',
   vencimento date,
   valor numeric DEFAULT 0.0,
-  pago boolean not null,
-  dataConta date not null,
+  pago boolean,
+  dataConta date,
   dataPago date
   check (valor >= 0)
 );
@@ -108,25 +109,41 @@ CREATE TABLE Produtos_Vendidos (
 
 CREATE TABLE Vendas_Produtos_Ass (
   id SERIAL PRIMARY KEY,
+  tipoPagamento text,
   id_Vendas int,
-  id_Produtos int
+  id_Produtos text,
+  id_Aprazo int
 );
 
 CREATE TABLE Produtos_Compras (
   id SERIAL PRIMARY KEY,
-  id_Produtos int,
+  id_Produtos text,
   id_Compras int
 );
 
 CREATE TABLE Vendas_Cliente_Ass (
   id SERIAL PRIMARY KEY,
   id_Venda int,
-  id_Cliente int
+  id_Cliente text,
+  id_APrazo int
 );
 
-ALTER TABLE Fornecedores_Produtos ADD FOREIGN KEY (Fornecedor_ID) REFERENCES Fornecedores_Local (id);
+create table Produtos_Vendidos_APrazo (
+	id int primary key,
+	id_prod int,
+	quantidade int,
+	parcelas int,
+	parcelas_pagas int,
+	dataCompra date,
+	dartaUltimoPagamento date,
+	pago boolean
+);
 
-ALTER TABLE Fornecedores_Produtos ADD FOREIGN KEY (Produto_ID) REFERENCES Produtos (id);
+ALTER TABLE Vendas_Produtos_Ass ADD FOREIGN KEY (id_aprazo) REFERENCES Produtos_Vendidos_APrazo (id);
+
+ALTER TABLE Vendas_Cliente_Ass ADD FOREIGN KEY (id_aprazo) REFERENCES Produtos_Vendidos_APrazo (id);
+
+ALTER TABLE Fornecedores_Produtos ADD FOREIGN KEY (Fornecedor_ID) REFERENCES Fornecedores_Local (id);
 
 ALTER TABLE Compras ADD FOREIGN KEY (Fornecedor_ID) REFERENCES Fornecedores_Local (id);
 
@@ -150,4 +167,6 @@ ALTER TABLE Produtos_Compras ADD FOREIGN KEY (id_Produtos) REFERENCES Produtos (
 
 ALTER TABLE Vendas_Cliente_Ass ADD FOREIGN KEY (id_Venda) REFERENCES Produtos_Vendidos (id);
 
-ALTER TABLE Vendas_Cliente_Ass ADD FOREIGN KEY (id_Cliente) REFERENCES Cliente (id);
+ALTER TABLE Vendas_Cliente_Ass ADD FOREIGN KEY (id_Cliente) REFERENCES Cliente (cpf);
+
+

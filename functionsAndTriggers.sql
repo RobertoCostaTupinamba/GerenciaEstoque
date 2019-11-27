@@ -3,6 +3,7 @@
 -- ********************************************** NEW FUNCTION (TRIGGER) *******************************************************
 -- Trigger de PRODUTOS, para caso já exista um produto similar no estoque,
 -- esse novo produto será somado com o já existente.
+drop function add_prodctForStock_fun()
 create or replace function add_productForStock_fun()
 returns trigger as $$
 declare
@@ -62,23 +63,22 @@ insert into fornecedores_local values(1, 'Mateus', '38414444', 1);
 -- ********************************************** NEW FUNCTION *******************************************************
 --Function compra de algum produto.
 --Função para estabelecer atomicidade na transação.
-create or replace function transacao_Compra_Fornecedor(tip text, marc text, val numeric, tam text, qnt int,
+create or replace function transacao_Compra_Fornecedor(cpf text, tip text, marc text, val numeric, tam text, qnt int,
 													    id_fornecedor int)
 returns void as $$
 	declare
-		id_prod int;
 		id_comp int;
 	begin
 		insert into compras(quantidade, fornecedor_id, dataCompra) values(qnt, id_fornecedor,current_date);
-		insert into produtos values(nextval('produtos_id_seq'),tip,marc,val,tam,qnt);
+		insert into produtos values(cpf,tip,marc,val,tam,qnt);
 
-		SELECT last_value into id_prod from produtos_id_seq;
 		SELECT last_value into id_comp from compras_id_seq;
-		insert into produtos_Compras(id_produtos, id_compras) values(id_prod, id_comp);
+		insert into produtos_Compras(id_produtos, id_compras) values(cpf, id_comp);
 	end;
 $$ language plpgsql;
 
---Testing..
+
+--Testing..	
 select transacao_Compra_Fornecedor('Calça', 'Adidas', 40, 'M', 67, 1);
 
 select * from compras;
@@ -115,7 +115,7 @@ for each row execute procedure add_Date_Compras_fun();
 -- ********************************************** NEW FUNCTION *******************************************************
 
 --Função para cadastrar um fornecedor.
-create or replace function cadastrar_Fornecedor_Endereco(nameF text, telF text, ruaE text, numeroE int,
+create or replace function cadastrar_Fornecedor_Endereco(ident text, nameF text, telF text, ruaE text, numeroE int,
 														bairroE text, cidadeE text, cepE text)
 returns void as $$
 	declare
@@ -123,7 +123,7 @@ returns void as $$
 	begin
 		insert into endereco values(nextval('endereco_id_seq'), ruaE, numeroE, bairroE, cidadeE, cepE);
 		select last_value into auxSeq from endereco_id_seq;
-		insert into fornecedores_local values(nextval('fornecedores_local_id_seq'), nameF, telF, auxSeq);
+		insert into fornecedores_local values(ident, nameF, telF, auxSeq);
 	end;
 $$ language plpgsql;
 
@@ -137,7 +137,8 @@ select * from endereco;
 
 --Função para cadastrar Funcionario.
 create or replace function cadastrar_Funcionario_Endereco(cpf text, nome text, telefone text, rua text, numero int,
-														 bairro text, cidade text, cep text)
+														 bairro text, cidade text, cep text, cargo text, salario numeric,
+														 dataNascimento date, dataInicio date, cargH int, contaCorrente text, senha text)
 returns void as $$
 	declare
 		auxSeq int;
@@ -145,12 +146,53 @@ returns void as $$
 		insert into endereco values(nextval('endereco_id_seq'), rua, numero, bairro, cidade, cep);
 		select last_value into auxSeq from endereco_id_seq;
 		insert into pessoas values(cpf, nome, telefone, auxSeq);
-		insert into funcionario(senha, cpf, id_cargo, salario, data_nascimento, carga_horaria, conta_corrente,
-							   ) values(cpf, current_date);
+		insert into cargo values(nextval('cargo_id_seq'),cargo);
+		select last_value into auxSeq from cargo_id_seq;
+		insert into funcionarios(senha, cpf, id_cargo, salario, data_nascimento, carga_horaria, conta_corrente,
+							   dt_inicio_trab) values(senha, cpf, auxSeq, salario, dataNascimento, cargH, 
+													 contaCorrente, dataInicio);
 	end;
 $$ language plpgsql;
 
-select cadastrar_Funcionario_Endereco('cpf', 'Mateus','3841', 'Rua Padre Manoel Luis', 219, 'Centro', 'coromandel', '38550000')
 select * from funcionarios;
 select * from endereco;
 select * from pessoas;
+
+
+-- ********************************************** NEW FUNCTION *******************************************************
+--Função de cadastro de cliente.
+create or replace function cadastrar_Cliente_Endereco(cpfD text, nomeD text, telefoneD text, ruaD text, numeroD int,
+													 bairroD text, cidadeD text, cepD text)
+returns void as $$
+	declare
+		auxSeq int;
+	begin
+	
+		insert into endereco values(nextval('endereco_id_seq'), ruaD, numeroD, bairroD, cidadeD, cepD);
+		select last_value into auxSeq from endereco_id_seq;
+		insert into pessoas values(cpfD, nomeD, telefoneD, auxSeq);
+		insert into cliente values(cpfD, current_date);
+	end;	
+$$ language plpgsql;
+
+
+--Trigger para não permitir 2 cadastro de mesma pessoa.
+create or replace function verify_exist_pessoas_fun()
+returns trigger as $$
+	declare
+		exist int;
+	begin
+		select count(*) into exist from pessoas
+		where cpf = new.cpf;
+		
+		if (exist > 0) then
+			return null;
+		end if;
+		return new;
+	end;
+$$ language plpgsql;
+
+create trigger verify_exist_pessoas_tri
+before insert on pessoas
+for each row execute procedure verify_exist_pessoas_fun();
+
