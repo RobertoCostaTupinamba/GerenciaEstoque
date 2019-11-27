@@ -1,5 +1,3 @@
-var produtos = Array();
-var cont=0;
 $(function () {
     $("#CadProd").submit(function (e) {
         e.preventDefault();
@@ -104,10 +102,34 @@ $(function () {
         })
     });
 
+    function getRadioValor(name){
+        var rads = document.getElementsByName(name);
+         
+        for(var i = 0; i < rads.length; i++){
+         if(rads[i].checked){
+            return rads[i].value;
+           
+         }
+         
+        }
+         
+        return null;
+       }
+
     $("#Venda").submit(function (event) {
         event.preventDefault();
-        var var_name = $("#parcela").val();
-        console.log(var_name);
+
+        getRadioValor('FormaDePagamento');
+        if ( getRadioValor('FormaDePagamento') == null) {
+            $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Selecione a forma de pagamento</div>');
+            setTimeout(function exluiAviso() {
+                $("#mensagemDiv").empty();
+            }, 2000);
+        }else{
+            
+            console.log( getRadioValor('FormaDePagamento'));
+        }
+        
 
     })
     let prazo = '<input type="text" id="parcela" class="fadeIn first" name="parcela" placeholder="Numero de parcelas">'
@@ -138,16 +160,38 @@ $(function () {
 
     function Excluir() {
         var par = $(this).parent().parent(); //tr
-        
+
         par.remove();
-        
-        
+
+        $("#total").text(CalcularTotal());
+
         // produtos.splice(i,1);
     };
 
+
+    function CalcularTotal() {
+         // Selecionar todas as linhas
+         var produtos = document.querySelectorAll(".Produ");
+         let total = 0;
+         // Percorrer a lista de produtos
+         for (var i = 0; i < produtos.length; i++) {
+
+             // Recupera o produto no indice i da lista de  produtos
+             var produto = produtos[i];
+
+             // pegando id
+             var id = produto.querySelector(".id").textContent;
+
+             // pegando quantidade
+             var qtd = produto.querySelector(".qtd").textContent;
+ 
+            total = total + parseFloat( produto.querySelector(".valor").textContent)  ;
+         }
+         return total;
+    }
+
     $("#adicionar").click(function (e) {
         e.preventDefault();
-        console.log("SEi la o que");
         let produto = {
             codigo: $("#cdg").val(),
             quantidade: $("#QTDProd").val()
@@ -164,17 +208,11 @@ $(function () {
                 } else {
                     console.log(response);
                     let produto = JSON.parse(response)
-                    produtos.push(produto);
                     produto.forEach(element => {
-                        $("#tbody").append('<tr id="'+(cont)+'"><th scope="row" >' + element.id + '</th><td>' + element.tipo + '</td><td>' + $("#QTDProd").val() + '</td><td class="valor">' + element.valor * ($("#QTDProd").val()) + '</td><td>' + '<img src="img/delete.png" class="btnExcluir"/>' + '</td></tr>');
+                        $("#tbody").append('<tr class="Produ"><th scope="row" class="id" >' + element.id + '</th><td>' + element.tipo + '</td><td class="qtd">' + $("#QTDProd").val() + '</td><td class="valor">' + element.valor * ($("#QTDProd").val()) + '</td><td>' + '<img src="img/delete.png" class="btnExcluir"/>' + '</td></tr>');
                         $(".btnExcluir").bind("click", Excluir);
-                        cont++;
                     });
-
-                    var name = $('.valor').html();
-
-                    console.log(produtos);
-
+                    $("#total").text(CalcularTotal());
                 }
                 setTimeout(function exluiAviso() {
                     $("#mensagemDiv").empty();

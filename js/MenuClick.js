@@ -126,9 +126,12 @@ let TDV = '<div id="formContent">' + '<form id="Venda">' +
     '</div>'+
     '<input type="text" id="cdg" class="fadeIn first" name="cdg" placeholder="Codigo do Produto">' +
     '<input type="text" id="QTDProd" class="fadeIn second" name="QTDProd" placeholder="Quantidade"></input>' +
-    '<button id="adicionar">Adicionar</button>'+
-    '<table class="table table-bordered table-dark">' +
-    '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th><th scope="col">Quantidade</th><th scope="col">Preço</th><th scope="col">Opções</th></tr></thead><tbody id="tbody"></tbody></table>'+
+    '<button class="btn" id="adicionar">Adicionar</button>'+
+    '<table class="table table-bordered table-dark fadeIn second">' +
+    '<thead"><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th><th scope="col">Quantidade</th><th scope="col">Preço</th><th scope="col">Opções</th></tr></thead"><tbody id="tbody"></tbody></table>'+
+    '<div>'+
+    '<label class="text-secondary fadeIn second">Total: </label> <label class="text-secondary fadeIn second" id="total">0 </label> '+
+    '</div>'+
     '<div>' +
     '<label for="pagCNT" class="text-secondary fadeIn third">Forma de Pagamento: </label> <br>' +
     '<input type="radio" id="vista" class="fadeIn third" value="Vista" name="FormaDePagamento"><label class="text-secondary fadeIn third" for="pagCNT">A vista</label> <br>' +
@@ -149,25 +152,7 @@ let LF = '<table class="table">' +
 
 // first second third fourth
 
-function ListarProdutos() {
-    let Produtos = localStorage.getItem("Lista Produtos");
-    Produtos = JSON.parse(Produtos);
-    // console.log(Produtos);
-    resultado = Produtos.split(",");
-    console.log(resultado);
-    let lista = Array();
-    for (let index = 0; index < resultado.length-1; index++) {
-        const element = resultado[index];
-        let prod = element.split(":");
-        lista.push(prod)
-    }
-    console.log(lista);
-    for (let index = 0; index < lista.length; index++) {
-        if(lista[index][0] == "codProd"){
-            $( "#tbody" ).append( '<tr><th scope="row" >' + lista[index][1] + '</th><td>'+lista[index+1][1]+'</td></tr>');
-        }
-    }
-}
+
 
 $(document).ready(function () {
 
@@ -303,6 +288,7 @@ $(document).ready(function () {
         $(".masthead-brand").text("Atualizar Contas");
         $("#h").empty();
         $("#h").html(TDV);
+        $("#cpfcli").mask("999.999.999-99");
         $("#script").html('<script src="./js/request.js"></script>');
     });
 
