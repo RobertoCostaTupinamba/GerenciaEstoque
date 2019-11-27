@@ -30,5 +30,6 @@
             }
         }
     }
+    pg_close($conexao);
 
 ?>
