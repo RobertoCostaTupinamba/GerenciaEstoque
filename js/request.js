@@ -151,19 +151,28 @@ $(function () {
     '<option value="GG">GG</option>' +
     '<option value="GGG">GGG</option>' +
     '</select>' +
-    '<select class="fadeIn third" id="fornecedor" name="select1">' +
+    '<select class="fadeIn third"  id="fornecedorSelect" name="select1">' +
     '<option value="null" disabled selected>Selecionar Fornecedor</option>' +
-    '<option value="1">1</option> ' +
     '</select>' +
     '<input type="submit" class="fadeIn fourth" value="Atualizar">' ;
     $("#AtualizarProd").submit(function (e) { 
         e.preventDefault();
         //chamada ajax se deer certo mostra os dados
         $("#AtualizarProdu").html(AtualizarProd);
-        
+        $.ajax({
+            type: "GET",
+            url: "./php/selecionarTodosFornecedores.php",
+            success: function (response) {
+                response = JSON.parse(response)
+                for (const key in response) {
+                    console.log(response[key]);
+                    $('#fornecedorSelect').append('<option value="' + response[key].id + '">' + response[key].id + ' - ' + response[key].nome + '</option>');
+                }
+            }
+        });
 
         $("#tamanho").val("P"); // exemplo de como selecinar 
-        $("#fornecedor").val("1");// exemplo de como selecinar 
+        $("#fornecedorSelect").val("12");// exemplo de como selecinar 
         
     });
 
