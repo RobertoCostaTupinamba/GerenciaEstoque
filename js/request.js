@@ -136,19 +136,19 @@ $(function () {
 
     $("#adicionar").click(function (e) { 
         e.preventDefault();
+        console.log("SEi la o que");
         let produto = {
             codigo: $("#cdg").val(), 
+            quantidade: $("#QTDProd").val()
         }
         $.ajax({
-            type: "method",
-            url: "url",
+            type: "GET",
+            url: "./php/verificaInformacoesProdVenda.php",
             data: produto,
-            dataType: "dataType",
             success: function (response) {
-                
+                console.log(response);
             }
         });
-        let quantidade = $("#QTDProd").val()
 
     });
 
