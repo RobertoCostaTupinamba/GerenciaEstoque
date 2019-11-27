@@ -8,4 +8,5 @@
         $arrayJson = json_encode($resultadoArray);
         echo $arrayJson;
     }
+    pg_close($conexao);
 ?>
