@@ -178,20 +178,11 @@ $(document).ready(function () {
             type: "GET",
             url: "./php/selecionarTodosFornecedores.php",
             success: function (response) {
-                console.log(response);
-                // let teste = [{
-                //     nome: 'roberto',
-                //     idade: 20
-                // },
-                // {
-                //     nome:'Jose',
-                //     idade:15
-                // }]
-                // console.log(teste);
+                response = JSON.parse(response)
                 for (const key in response) {
-                    $('#fornecedorSelect').append('<option value="'+response[key].id+'">'+response[key].id+' - '+response[key].nome+'</option>');
+                    console.log(response[key]);
+                    $('#fornecedorSelect').append('<option value="' + response[key].id + '">' + response[key].id + ' - ' + response[key].nome + '</option>');
                 }
-                
             }
         });
     });
