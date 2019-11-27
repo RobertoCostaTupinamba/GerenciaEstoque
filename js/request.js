@@ -134,6 +134,24 @@ $(function () {
         })
     });
 
+    $("#adicionar").click(function (e) { 
+        e.preventDefault();
+        let produto = {
+            codigo: $("#cdg").val(), 
+        }
+        $.ajax({
+            type: "method",
+            url: "url",
+            data: produto,
+            dataType: "dataType",
+            success: function (response) {
+                
+            }
+        });
+        let quantidade = $("#QTDProd").val()
+
+    });
+
     let AtualizarProd = '<input type="text" id="CodProd" class="fadeIn second" name="CodProd" placeholder="Identificação"></input>' +
     '<input type="text" id="TipProd" class="fadeIn second" name="TipProd" placeholder="Tipo do Produto"></input>' +
     '<input type="text" id="MarcaProd" class="fadeIn second" name="MarcaProd" placeholder="Marca"></input>' +
