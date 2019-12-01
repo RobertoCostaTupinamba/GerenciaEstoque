@@ -88,26 +88,7 @@ $(function () {
             }
         })
     })
-    //Atualizar produtos.
-    $("#AtualizarProd").submit(function (event) {
-        event.preventDefault();
-        var data = $(this).serialize();
-        $.ajax({
-            type: "GET",
-            url: "./php/consultaProdutos.php",
-            data: data,
-            success: function (response) {
-                if (response == 1) {
-                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
-                } else {
-                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
-                }
-                setTimeout(function exluiAviso() {
-                    $("#mensagemDiv").empty();
-                }, 2000);
-            }
-        })
-    });
+
 
     function getRadioValor(name) {
         var rads = document.getElementsByName(name);
@@ -322,6 +303,10 @@ $(function () {
             success: function (response) {
                 if (response == 1) {
                     $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Produto não existe</div>');
+                    $("#AtualizarProdu").empty();
+                    setTimeout(function exluiAviso() {
+                        $("#mensagemDiv").empty();
+                    }, 2000);
                 } else {
                     response = JSON.parse(response)
                     $("#AtualizarProdu").html(AtualizarProd);
@@ -337,18 +322,21 @@ $(function () {
                         }
                     });
                     for (prod of response) {
+                        console.log(prod.id_fornecedor);
+                        
                         $("#CodProd").val(prod.id);
                         $("#TipProd").val(prod.tipo);
                         $("#MarcaProd").val(prod.marca);
                         $("#ValorProd").val(prod.valor);
                         $("#QTDProd").val(prod.quantidade);
                         $("#tamanho").val(prod.tamanho);
+                        $("#fornecedorSelect").val(""+prod.id_fornecedor);
                     }
                 }
 
             }
         });
-        // $("#fornecedorSelect").val("12"); // exemplo de como selecinar 
+        //$("#fornecedorSelect").val("12"); // exemplo de como selecinar 
     });
 
     let atualizarFunc = '<input type="text" id="cpfFunc" class="fadeIn first" name="cpfFunc" placeholder="Cpf" maxlength="11"></input>' +
@@ -380,7 +368,12 @@ $(function () {
             success: function (response) {
                 if (response == 1) {
                     $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Funcionario não existe</div>');
+                    setTimeout(function exluiAviso() {
+                        $("#mensagemDiv").empty();
+                    }, 2000);
                 } else {
+                    $("#AtualizarFunc").html(atualizarFunc);
+
                     response = JSON.parse(response)
                     for (Func of response) {
                         $("#cpfFunc").val(Func.cpf);
@@ -398,8 +391,7 @@ $(function () {
             }
         });
         //ajax
-        $("#AtualizarFunc").html(atualizarFunc);
-
+       
         $("#cpfFunc").mask("999.999.999-99");
         $("#nasciFunc").mask("99/99/9999");
         $("#DTinicioFunc").mask("99/99/9999");
@@ -431,7 +423,11 @@ $(function () {
                 console.log(response);
                 if (response == 1) {
                     $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Cliente não existe</div>');
+                    setTimeout(function exluiAviso() {
+                        $("#mensagemDiv").empty();
+                    }, 2000);
                 } else {
+                    $("#AtualizarCLI").html(atualizarCliente);
                     response = JSON.parse(response)
                     for (cli of response) {
                         $("#cpfcli").val(cli.cpf);
@@ -449,7 +445,7 @@ $(function () {
             }
         });
         //ajax
-        $("#AtualizarCLI").html(atualizarCliente);
+       
         $("input#Telcli").mask("(99) 99999-999?9")
         $("#cpfcli").mask("999.999.999-99");
         $("input#cepcli").mask("99999-999")
