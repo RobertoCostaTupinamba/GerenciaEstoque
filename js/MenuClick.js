@@ -325,6 +325,15 @@ $(document).ready(function () {
         $("#cpfcli").mask("999.999.999-99");
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    $("#PDP").click(function (e) {
+        $(".active").removeClass("active");
+        $("#PDP").addClass("active");
+        $(".masthead-brand").text("Pagamento de Parcelas");
+        $("#h").empty();
+        $("#h").html(PagDP);
+        $("#cpfcli").mask("999.999.999-99");
+        $("#script").html('<script src="./js/request.js"></script>');
+    });
 
     $("#LP").click(function (e) {
         $(".active").removeClass("active");
