@@ -1,11 +1,13 @@
 <?php
     include_once("./conexao.php");
 
-    $id_fornecedor = 1425;
+    $id_fornecedor = $_GET['cdg'];
 
     if ($conexao) {
-        $select = "select * from fornecedores_local, endereco
-        where fornecedores_local.id = '".$id_fornecedor."';";
+        $select = "select f.id, f.nome, f.telefone, e.rua, e.numero, e.bairro, e.cidade, e.cep 
+        from fornecedores_local f, endereco e
+        where f.id_Endereco = e.id and
+        f.id = '".$id_fornecedor."';";
         
         include_once("./retornoAtualiza.php");
     }
