@@ -1,4 +1,5 @@
 $(function () {
+    //Cadastrar o produto
     $("#CadProd").submit(function (e) {
         e.preventDefault();
         var dados_form = $(this).serialize();
@@ -20,7 +21,7 @@ $(function () {
             }
         });
     });
-
+    //Cadastrar a conta
     $("#CadCNT").submit(function (event) {
         event.preventDefault();
         var data = $(this).serialize();
@@ -42,7 +43,7 @@ $(function () {
             }
         })
     })
-
+    //Cadastrar o fornecedor
     $("#CadCFR").submit(function (event) {
         event.preventDefault();
         var data = $(this).serialize();
@@ -65,7 +66,7 @@ $(function () {
             }
         })
     });
-
+    //Cadastrar o funcionario
     $("#CadFunc").submit(function (event) {
         event.preventDefault();
         var data = $(this).serialize();
@@ -89,7 +90,7 @@ $(function () {
         })
     })
 
-
+    //Pegar valor do radio
     function getRadioValor(name) {
         var rads = document.getElementsByName(name);
 
@@ -104,7 +105,7 @@ $(function () {
         return null;
     }
 
-
+    //Cria lista de produtos vedidos para o cliente
     function produtosVendidos() {
         var produtos = document.querySelectorAll(".Produ");
         let prodVendidos = Array();
@@ -130,11 +131,10 @@ $(function () {
         return prodVendidos;
     }
 
-
+    //Formulario de venda
     $("#Venda").submit(function (event) {
         event.preventDefault();
 
-        getRadioValor('FormaDePagamento');
         if (getRadioValor('FormaDePagamento') == null) {
             $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Selecione a forma de pagamento</div>');
             setTimeout(function exluiAviso() {
@@ -163,29 +163,26 @@ $(function () {
                         pacelado: $("#parcela").val()
                     }
                 }
-
                 console.log(venda);
-
             }
         }
-
-
     })
+    //adicionando o campo de numero de parcelas caso o cliente escolha pagar a prazo
     let prazo = '<input type="text" id="parcela" class="fadeIn first" name="parcela" placeholder="Numero de parcelas">'
     $("#prazo").click(function (e) {
         $("#APrazo").html(prazo);
 
     });
 
+    //removendo o campo de numero de parcelas caso o cliente escolha pagar a vista
     $("#vista").click(function (e) {
         $("#APrazo").empty();
     });
-
+    //Cadastrar cliente
     $("#CadCli").submit(function (event) {
         event.preventDefault();
         var data = $(this).serialize();
         console.log(data);
-
         $.ajax({
             type: "POST",
             url: "./php/cadastroCliente.php",
@@ -203,7 +200,7 @@ $(function () {
             }
         })
     });
-
+    //Excluir uma linha da tabela de produtos na tela de venda
     function Excluir() {
         var par = $(this).parent().parent(); //tr
 
@@ -214,7 +211,7 @@ $(function () {
         // produtos.splice(i,1);
     };
 
-
+    //calcular o total da venda 
     function CalcularTotal() {
         // Selecionar todas as linhas
         var produtos = document.querySelectorAll(".Produ");
@@ -236,6 +233,7 @@ $(function () {
         return total;
     }
 
+    //Adicionar um produto a tabela de produtos na tela de vendas
     $("#adicionar").click(function (e) {
         e.preventDefault();
         let produto = {
@@ -267,7 +265,7 @@ $(function () {
         });
 
     });
-
+    //Atualizar produto
     let AtualizarProd = '<input type="text" id="CodProd" class="fadeIn second" name="CodProd" placeholder="Identificação"></input>' +
         '<input type="text" id="TipProd" class="fadeIn second" name="TipProd" placeholder="Tipo do Produto"></input>' +
         '<input type="text" id="MarcaProd" class="fadeIn second" name="MarcaProd" placeholder="Marca"></input>' +
@@ -323,14 +321,14 @@ $(function () {
                     });
                     for (prod of response) {
                         console.log(prod.id_fornecedor);
-                        
+
                         $("#CodProd").val(prod.id);
                         $("#TipProd").val(prod.tipo);
                         $("#MarcaProd").val(prod.marca);
                         $("#ValorProd").val(prod.valor);
                         $("#QTDProd").val(prod.quantidade);
                         $("#tamanho").val(prod.tamanho);
-                        $("#fornecedorSelect").val(""+prod.id_fornecedor);
+                        $("#fornecedorSelect").val("" + prod.id_fornecedor);
                     }
                 }
 
@@ -339,6 +337,7 @@ $(function () {
         //$("#fornecedorSelect").val("12"); // exemplo de como selecinar 
     });
 
+    //Atualizar Funcionario
     let atualizarFunc = '<input type="text" id="cpfFunc" class="fadeIn first" name="cpfFunc" placeholder="Cpf" maxlength="11"></input>' +
         '<input type="text" id="nomeFunc" class="fadeIn first" name="nomeFunc" placeholder="Nome" maxlength="100">' +
         '<input type="text" id="TelFunc" class="fadeIn first" name="TelFunc" placeholder="Telefone" required >' +
@@ -391,7 +390,7 @@ $(function () {
             }
         });
         //ajax
-       
+
         $("#cpfFunc").mask("999.999.999-99");
         $("#nasciFunc").mask("99/99/9999");
         $("#DTinicioFunc").mask("99/99/9999");
@@ -399,12 +398,12 @@ $(function () {
         $("input#cepFunc").mask("99999-999")
         $("#TelFunc").mask("(99) 99999-999?9")
     });
-
+    //Atualizar Cliente
     let atualizarCliente = '<input type="text" id="cpfcli" class="fadeIn first" name="cpfcli" placeholder="Cpf" maxlength="11"></input>' +
         '<input type="text" id="nomecli" class="fadeIn first" name="nomecli" placeholder="Nome" maxlength="100">' +
         '<input type="text" id="Telcli" class="fadeIn second" name="Telcli" placeholder="Telefone" required >' +
         '<input type="text" id="ruacli" class="fadeIn second" name="ruacli" placeholder="Rua">' +
-        '<input type="number" id="numcli" class="fadeIn second" name="numcli" placeholder="Numero">' +
+        '<input type="number" id="numcli" class="fadeIn second" name="numcli" placeholder="Numero da casa">' +
         '<input type="text" id="bairrocli" class="fadeIn second" name="bairrocli" placeholder="Bairro">' +
         '<input type="text" id="cidadecli" class="fadeIn third" name="cidadecli" placeholder="Cidade">' +
         '<input type="text" id="cepcli" class="fadeIn third" name="cepcli" placeholder="CEP">' +
@@ -445,12 +444,13 @@ $(function () {
             }
         });
         //ajax
-       
+
         $("input#Telcli").mask("(99) 99999-999?9")
         $("#cpfcli").mask("999.999.999-99");
         $("input#cepcli").mask("99999-999")
     });
 
+    //Atualizar Fornecedor
     let atualizarFornecedor = '<input type="text" id="codcfr" class="fadeIn first" name="codcfr" placeholder="Codigo fornecedor" maxlength="11"></input>' +
         '<input type="text" id="nomecfr" class="fadeIn third" name="nomecfr" placeholder="Nome" maxlength="100">' +
         '<input type="text" id="Telcfr" class="fadeIn third" name="Telcfr" placeholder="Telefone" required >' +
@@ -469,7 +469,7 @@ $(function () {
         $("input#cepcfr").mask("99999-999")
     });
 
-
+    //Atualizar Contas
     let atualizarContas = '<input type="text" id="desCNT" class="fadeIn third" name="desCNT" placeholder="Descrição" maxlength="100">' +
         '<input type="text" id="VenCNT" class="fadeIn third" name="VenCNT" placeholder="Vencimento" required >' +
         '<input type="text" id="valorCNT" class="fadeIn third" name="valorCNT" placeholder="Valor" onKeyPress="return(moeda(this,' + "'.'" + ',' + "','" + ',event))">' +
