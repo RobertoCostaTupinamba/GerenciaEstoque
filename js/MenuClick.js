@@ -121,17 +121,17 @@ let ACNT = '<div id="formContent">' + '<form id="AtualizarContas">' +
     '</div>';
 
 let TDV = '<div id="formContent">' + '<form id="Venda">' +
-    '<div>'+
+    '<div>' +
     '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf do Cliente" maxlength="11"></input>' +
-    '</div>'+
+    '</div>' +
     '<input type="text" id="cdg" class="fadeIn first" name="cdg" placeholder="Codigo do Produto">' +
     '<input type="text" id="QTDProd" class="fadeIn second" name="QTDProd" placeholder="Quantidade"></input>' +
-    '<button class="btn" id="adicionar">Adicionar</button>'+
+    '<button class="btn" id="adicionar">Adicionar</button>' +
     '<table class="table table-bordered table-dark fadeIn second">' +
-    '<thead"><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th><th scope="col">Quantidade</th><th scope="col">Preço</th><th scope="col">Opções</th></tr></thead"><tbody id="tbody"></tbody></table>'+
-    '<div>'+
-    '<label class="text-secondary fadeIn second">Total: </label> <label class="text-secondary fadeIn second" id="total">0 </label> '+
-    '</div>'+
+    '<thead"><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th><th scope="col">Quantidade</th><th scope="col">Preço</th><th scope="col">Opções</th></tr></thead"><tbody id="tbody"></tbody></table>' +
+    '<div>' +
+    '<label class="text-secondary fadeIn second">Total: </label> <label class="text-secondary fadeIn second" id="total">0 </label> ' +
+    '</div>' +
     '<div>' +
     '<label for="pagCNT" class="text-secondary fadeIn third">Forma de Pagamento: </label> <br>' +
     '<input type="radio" id="vista" class="fadeIn third" value="Vista" name="FormaDePagamento"><label class="text-secondary fadeIn third" for="pagCNT">A vista</label> <br>' +
@@ -143,6 +143,13 @@ let TDV = '<div id="formContent">' + '<form id="Venda">' +
     '</form>' +
     '</div>';
 
+
+let PagDP = '<div id="formContent">' + '<form id="PagamentoDeParcela">' +
+    '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf do Cliente" maxlength="11"></input>' +
+    '<input type="text" id="parcela" class="fadeIn first" name="parcela" placeholder="Quantas parcela o mesmo está pagando?">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Registrar Pagamento">' +
+    '</form>' +
+    '</div>';
 let LP = '<table class="table">' +
     '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th></tr></thead><tbody id="tbody"></tbody></table>'
 
