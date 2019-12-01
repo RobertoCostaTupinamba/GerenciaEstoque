@@ -4,3 +4,5 @@ retorna oq é o cargo
 Retorna onde o funcionario mora
 um cliente pode ser um funcionario
 arrumar o atualiza cliente
+
+na hora do cadastro informa se o codigo ja existe

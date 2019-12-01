@@ -353,7 +353,7 @@ $(function () {
         '<input type="text" id="DTinicioFunc" class="fadeIn fourth" name="DTinicioFunc" placeholder="Data do inicio do trabalho" maxlength="32">' +
         '<input type="text" id="CHFunc" class="fadeIn fourth" name="CHFunc" placeholder="Carga horaria semanal" maxlength="2">' +
         '<input type="text" id="ContaCFunc" class="fadeIn fourth" name="ContaCFunc" placeholder="Conta corrente" maxlength="32">' +
-        '<input type="text" id="passwordFunc" class="fadeIn fourth" name="senhaFunc" placeholder="Senha" maxlength="32">' +
+        // '<input type="text" id="passwordFunc" class="fadeIn fourth" name="senhaFunc" placeholder="Senha" maxlength="32">' +
         '<input type="submit" class="fadeIn fourth" value="Atualizar">';
 
     $("#AtualizarFuncionario").submit(function (e) {
@@ -377,7 +377,7 @@ $(function () {
                     response = JSON.parse(response)
                     for (Func of response) {
                         $("#cpfFunc").val(Func.cpf);
-                        $("#passwordFunc").val(Func.senha);
+                        // $("#passwordFunc").val(Func.senha);
                         $("#cargoFunc").val(Func.id_cargo);
                         $("#SalFunc").val(Func.salario);
                         $("#nasciFunc").val(Func.data_nascimento);

@@ -16,7 +16,7 @@
    if ($conexao) {
         $insert = "select transacao_Compra_Fornecedor('".$id_prod."','".$tipoProd."','".$marcaProd."',".
         $valorProd.",'". $tam ."',". $qntProd .",'".$id_fornecedor."');";
-        echo "$insert";
+        //echo "$insert";
         if ($res = pg_query($conexao, $insert)) {
             echo "$res";
         }
