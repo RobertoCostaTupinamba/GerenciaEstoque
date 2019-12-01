@@ -63,7 +63,7 @@ let CFR = '<div id="formContent">' + '<form id="CadCFR">' +
     '<input type="text" id="nomecfr" class="fadeIn third" name="nomecfr" placeholder="Nome" maxlength="100">' +
     '<input type="text" id="Telcfr" class="fadeIn third" name="Telcfr" placeholder="Telefone" required >' +
     '<input type="text" id="ruacfr" class="fadeIn third" name="ruacfr" placeholder="Rua">' +
-    '<input type="number" id="numcfr" class="fadeIn third" name="numcfr" placeholder="Numero">' +
+    '<input type="number" id="numcfr" class="fadeIn third" name="numcfr" placeholder="Numero da Casa">' +
     '<input type="text" id="bairrocfr" class="fadeIn third" name="bairrocfr" placeholder="Bairro">' +
     '<input type="text" id="cidadecfr" class="fadeIn third" name="cidadecfr" placeholder="Cidade">' +
     '<input type="text" id="cepcfr" class="fadeIn third" name="cepcfr" placeholder="CEP">' +
@@ -256,6 +256,7 @@ $(document).ready(function () {
         $(".masthead-brand").text("Atualizar Funcionario");
         $("#h").empty();
         $("#h").html(AF);
+        $("#cdg").mask("999.999.999-99");
         $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#AC").click(function (e) {
@@ -264,6 +265,7 @@ $(document).ready(function () {
         $(".masthead-brand").text("Atualizar Cliente");
         $("#h").empty();
         $("#h").html(AC);
+        $("#cdg").mask("999.999.999-99");
         $("#script").html('<script src="./js/request.js"></script>');
     });
     $("#ACFR").click(function (e) {

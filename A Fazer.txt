@@ -1,0 +1,6 @@
+retornar quem forneceu o produto
+retornar qual nome do funcionario
+retorna oq é o cargo
+Retorna onde o funcionario mora
+um cliente pode ser um funcionario
+arrumar o atualiza cliente

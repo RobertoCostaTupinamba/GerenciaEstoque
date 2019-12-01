@@ -97,39 +97,97 @@ $(function () {
             url: "./php/consultaProdutos.php",
             data: data,
             success: function (response) {
-                alert(response);
+                if (response == 1) {
+                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
+                } else {
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
+                }
+                setTimeout(function exluiAviso() {
+                    $("#mensagemDiv").empty();
+                }, 2000);
             }
         })
     });
 
-    function getRadioValor(name){
+    function getRadioValor(name) {
         var rads = document.getElementsByName(name);
-         
-        for(var i = 0; i < rads.length; i++){
-         if(rads[i].checked){
-            return rads[i].value;
-           
-         }
-         
+
+        for (var i = 0; i < rads.length; i++) {
+            if (rads[i].checked) {
+                return rads[i].value;
+
+            }
+
         }
-         
+
         return null;
-       }
+    }
+
+
+    function produtosVendidos() {
+        var produtos = document.querySelectorAll(".Produ");
+        let prodVendidos = Array();
+        // Percorrer a lista de produtos
+        for (var i = 0; i < produtos.length; i++) {
+
+            // Recupera o produto no indice i da lista de  produtos
+            var produto = produtos[i];
+
+            // pegando id
+            var id = produto.querySelector(".id").textContent;
+
+            // pegando quantidade
+            var qtd = produto.querySelector(".qtd").textContent;
+
+            let prod = {
+                cdg: id,
+                QTDProd: qtd
+            }
+
+            prodVendidos.push(prod)
+        }
+        return prodVendidos;
+    }
+
 
     $("#Venda").submit(function (event) {
         event.preventDefault();
 
         getRadioValor('FormaDePagamento');
-        if ( getRadioValor('FormaDePagamento') == null) {
+        if (getRadioValor('FormaDePagamento') == null) {
             $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Selecione a forma de pagamento</div>');
             setTimeout(function exluiAviso() {
                 $("#mensagemDiv").empty();
             }, 2000);
-        }else{
-            
-            console.log( getRadioValor('FormaDePagamento'));
+        } else {
+            if ($("#parcela").val() == '') {
+                $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Numero de parcelas não definido</div>');
+                setTimeout(function exluiAviso() {
+                    $("#mensagemDiv").empty();
+                }, 2000);
+            } else {
+                //    let venda =  $(this).serialize();
+                let venda;
+                if (getRadioValor('FormaDePagamento') == "Vista") {
+                    venda = {
+                        cpfcli: $("#cpfcli").val(),
+                        produtos: produtosVendidos(),
+                        FormaDePagamento: getRadioValor('FormaDePagamento')
+                    }
+                } else {
+                    venda = {
+                        cpfcli: $("#cpfcli").val(),
+                        produtos: produtosVendidos(),
+                        FormaDePagamento: getRadioValor('FormaDePagamento'),
+                        pacelado: $("#parcela").val()
+                    }
+                }
+
+                console.log(venda);
+
+            }
         }
-        
+
 
     })
     let prazo = '<input type="text" id="parcela" class="fadeIn first" name="parcela" placeholder="Numero de parcelas">'
@@ -152,7 +210,14 @@ $(function () {
             url: "./php/cadastroCliente.php",
             data: data,
             success: function (response) {
-                alert(response);
+                if (response == 1) {
+                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
+                } else {
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
+                }
+                setTimeout(function exluiAviso() {
+                    $("#mensagemDiv").empty();
+                }, 2000);
 
             }
         })
@@ -170,24 +235,24 @@ $(function () {
 
 
     function CalcularTotal() {
-         // Selecionar todas as linhas
-         var produtos = document.querySelectorAll(".Produ");
-         let total = 0;
-         // Percorrer a lista de produtos
-         for (var i = 0; i < produtos.length; i++) {
+        // Selecionar todas as linhas
+        var produtos = document.querySelectorAll(".Produ");
+        let total = 0;
+        // Percorrer a lista de produtos
+        for (var i = 0; i < produtos.length; i++) {
 
-             // Recupera o produto no indice i da lista de  produtos
-             var produto = produtos[i];
+            // Recupera o produto no indice i da lista de  produtos
+            var produto = produtos[i];
 
-             // pegando id
-             var id = produto.querySelector(".id").textContent;
+            // pegando id
+            var id = produto.querySelector(".id").textContent;
 
-             // pegando quantidade
-             var qtd = produto.querySelector(".qtd").textContent;
- 
-            total = total + parseFloat( produto.querySelector(".valor").textContent)  ;
-         }
-         return total;
+            // pegando quantidade
+            var qtd = produto.querySelector(".qtd").textContent;
+
+            total = total + parseFloat(produto.querySelector(".valor").textContent);
+        }
+        return total;
     }
 
     $("#adicionar").click(function (e) {
@@ -245,30 +310,52 @@ $(function () {
         '<input type="submit" class="fadeIn fourth" value="Atualizar">';
     $("#AtualizarProd").submit(function (e) {
         e.preventDefault();
-        //chamada ajax se deer certo mostra os dados
-        $("#AtualizarProdu").html(AtualizarProd);
+        let cdgproduto = {
+            cdg: $("#cdg").val(),
+        }
+        console.log(cdgproduto);
+
         $.ajax({
             type: "GET",
-            url: "./php/selecionarTodosFornecedores.php",
+            url: "./php/atualizarProdutos.php",
+            data: cdgproduto,
             success: function (response) {
-                response = JSON.parse(response)
-                for (const key in response) {
-                    console.log(response[key]);
-                    $('#fornecedorSelect').append('<option value="' + response[key].id + '">' + response[key].id + ' - ' + response[key].nome + '</option>');
+                if (response == 1) {
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Produto não existe</div>');
+                } else {
+                    response = JSON.parse(response)
+                    $("#AtualizarProdu").html(AtualizarProd);
+                    $.ajax({
+                        type: "GET",
+                        url: "./php/selecionarTodosFornecedores.php",
+                        success: function (response) {
+                            response = JSON.parse(response)
+                            for (const key in response) {
+                                console.log(response[key]);
+                                $('#fornecedorSelect').append('<option value="' + response[key].id + '">' + response[key].id + ' - ' + response[key].nome + '</option>');
+                            }
+                        }
+                    });
+                    for (prod of response) {
+                        $("#CodProd").val(prod.id);
+                        $("#TipProd").val(prod.tipo);
+                        $("#MarcaProd").val(prod.marca);
+                        $("#ValorProd").val(prod.valor);
+                        $("#QTDProd").val(prod.quantidade);
+                        $("#tamanho").val(prod.tamanho);
+                    }
                 }
+
             }
         });
-
-        $("#tamanho").val("P"); // exemplo de como selecinar 
-        $("#fornecedorSelect").val("12"); // exemplo de como selecinar 
-
+        // $("#fornecedorSelect").val("12"); // exemplo de como selecinar 
     });
 
     let atualizarFunc = '<input type="text" id="cpfFunc" class="fadeIn first" name="cpfFunc" placeholder="Cpf" maxlength="11"></input>' +
         '<input type="text" id="nomeFunc" class="fadeIn first" name="nomeFunc" placeholder="Nome" maxlength="100">' +
         '<input type="text" id="TelFunc" class="fadeIn first" name="TelFunc" placeholder="Telefone" required >' +
         '<input type="text" id="ruaFunc" class="fadeIn first" name="ruaFunc" placeholder="Rua">' +
-        '<input type="number" id="numFunc" class="fadeIn second" name="numFunc" placeholder="Numero">' +
+        '<input type="number" id="numFunc" class="fadeIn second" name="numFunc" placeholder="Numero da casa">' +
         '<input type="text" id="bairroFunc" class="fadeIn second" name="bairroFunc" placeholder="Bairro">' +
         '<input type="text" id="cidadeFunc" class="fadeIn second" name="cidadeFunc" placeholder="Cidade">' +
         '<input type="text" id="cepFunc" class="fadeIn fourth" name="cepFunc" placeholder="CEP">' +
@@ -283,14 +370,42 @@ $(function () {
 
     $("#AtualizarFuncionario").submit(function (e) {
         e.preventDefault();
+        let cpfFunc = {
+            cdg: $("#cdg").val(),
+        }
+        $.ajax({
+            type: "GET",
+            url: "./php/atualizarFuncionarios.php",
+            data: cpfFunc,
+            success: function (response) {
+                if (response == 1) {
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Funcionario não existe</div>');
+                } else {
+                    response = JSON.parse(response)
+                    for (Func of response) {
+                        $("#cpfFunc").val(Func.cpf);
+                        $("#passwordFunc").val(Func.senha);
+                        $("#cargoFunc").val(Func.id_cargo);
+                        $("#SalFunc").val(Func.salario);
+                        $("#nasciFunc").val(Func.data_nascimento);
+                        $("#CHFunc").val(Func.carga_horaria);
+                        $("#ContaCFunc").val(Func.conta_corrente);
+                        $("#DTinicioFunc").val(Func.dt_inicio_trab);
+                    }
+
+                }
+
+            }
+        });
         //ajax
         $("#AtualizarFunc").html(atualizarFunc);
-        $("input#TelFunc").mask("(99) 99999-999?9")
+
         $("#cpfFunc").mask("999.999.999-99");
         $("#nasciFunc").mask("99/99/9999");
         $("#DTinicioFunc").mask("99/99/9999");
         $("input#ContaCFunc").mask("99999-9");
         $("input#cepFunc").mask("99999-999")
+        $("#TelFunc").mask("(99) 99999-999?9")
     });
 
     let atualizarCliente = '<input type="text" id="cpfcli" class="fadeIn first" name="cpfcli" placeholder="Cpf" maxlength="11"></input>' +
@@ -305,6 +420,34 @@ $(function () {
 
     $("#AtualizarCliente").submit(function (e) {
         e.preventDefault();
+        let cpfcli = {
+            cdg: $("#cdg").val(),
+        }
+        $.ajax({
+            type: "GET",
+            url: "./php/atualizarCliente.php",
+            data: cpfcli,
+            success: function (response) {
+                console.log(response);
+                if (response == 1) {
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Cliente não existe</div>');
+                } else {
+                    response = JSON.parse(response)
+                    for (cli of response) {
+                        $("#cpfcli").val(cli.cpf);
+                        $("#nomecli").val(cli.senha);
+                        $("#Telcli").val(cli.id_cargo);
+                        $("#ruacli").val(cli.salario);
+                        $("#numcli").val(cli.data_nascimento);
+                        $("#bairrocli").val(cli.carga_horaria);
+                        $("#cidadecli").val(cli.conta_corrente);
+                        $("#cepcli").val(cli.dt_inicio_trab);
+                    }
+                }
+
+
+            }
+        });
         //ajax
         $("#AtualizarCLI").html(atualizarCliente);
         $("input#Telcli").mask("(99) 99999-999?9")

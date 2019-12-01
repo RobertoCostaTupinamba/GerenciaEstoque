@@ -1,11 +1,11 @@
 <?php
     include_once("./conexao.php");
     
-    $id_func = $_GET["codigo"];
+    $id_func = $_GET["cdg"];
 
     if ($conexao) {
         $select = "select * from funcionarios
-        where '".$id_func."';";
+        where cpf='".$id_func."';";
 
         include_once("./retornoAtualiza.php");
     }

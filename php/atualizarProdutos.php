@@ -1,7 +1,7 @@
 <?php
-    include_once("./conexao");
+    include_once("./conexao.php");
     
-    $id_prod = ["codigo"];
+    $id_prod = $_GET["cdg"];
 
 
     if($conexao) {
