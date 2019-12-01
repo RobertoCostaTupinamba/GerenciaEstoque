@@ -1,3 +1,4 @@
+//Formulario de cadastrar Produto
 let cadp = '<div id="formContent">' + '<form id="CadProd" method="POST">' +
     '<input type="text" id="CodProd" class="fadeIn second" name="CodProd" placeholder="Identificação"></input>' +
     '<input type="text" id="TipProd" class="fadeIn second" name="TipProd" placeholder="Tipo do Produto"></input>' +
@@ -23,6 +24,7 @@ let cadp = '<div id="formContent">' + '<form id="CadProd" method="POST">' +
     '</form>' +
     '</div>';
 
+// formulario de cadastra Funcionario
 let cadf = '<div id="formContent">' + '<form id="CadFunc">' +
     '<input type="text" id="cpfFunc" class="fadeIn first" name="cpfFunc" placeholder="Cpf" maxlength="11"></input>' +
     '<input type="text" id="nomeFunc" class="fadeIn first" name="nomeFunc" placeholder="Nome" maxlength="100">' +
@@ -38,13 +40,15 @@ let cadf = '<div id="formContent">' + '<form id="CadFunc">' +
     '<input type="text" id="DTinicioFunc" class="fadeIn fourth" name="DTinicioFunc" placeholder="Data do inicio do trabalho" maxlength="32">' +
     '<input type="text" id="CHFunc" class="fadeIn fourth" name="CHFunc" placeholder="Carga horaria semanal" maxlength="2">' +
     '<input type="text" id="ContaCFunc" class="fadeIn fourth" name="ContaCFunc" placeholder="Conta corrente" maxlength="32">' +
-    '<input type="text" id="passwordFunc" class="fadeIn fourth" name="senhaFunc" placeholder="Senha" maxlength="32">' +
+    //'<input type="text" id="passwordFunc" class="fadeIn fourth" name="senhaFunc" placeholder="Senha" maxlength="32">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
     '</form>' +
     '</div>';
 
+//Tela de inicio
 let home = '<h1 class="cover-heading titulo">Seja Bem Vindo!!</h1>' + '<p id="NomeUser" class="lead"></p>'
 
+//Fomulario de cadastrar cliente
 let CC = '<div id="formContent">' + '<form id="CadCli">' +
     '<input type="text" id="cpfcli" class="fadeIn first" name="cpfcli" placeholder="Cpf" maxlength="11"></input>' +
     '<input type="text" id="nomecli" class="fadeIn first" name="nomecli" placeholder="Nome" maxlength="100">' +
@@ -57,7 +61,7 @@ let CC = '<div id="formContent">' + '<form id="CadCli">' +
     '<input type="submit" id="button" class="fadeIn third" value="Cadastar">' +
     '</form>' +
     '</div>';
-
+//Formulario de cadastrar fornecedor
 let CFR = '<div id="formContent">' + '<form id="CadCFR">' +
     '<input type="text" id="codcfr" class="fadeIn first" name="codcfr" placeholder="Codigo fornecedor" maxlength="11"></input>' +
     '<input type="text" id="nomecfr" class="fadeIn third" name="nomecfr" placeholder="Nome" maxlength="100">' +
@@ -70,6 +74,8 @@ let CFR = '<div id="formContent">' + '<form id="CadCFR">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Cadastar">' +
     '</form>' +
     '</div>';
+
+//Formulario de cadastrar contas
 let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
     '<input type="text" id="desCNT" class="fadeIn third" name="desCNT" placeholder="Descrição" maxlength="100">' +
     '<input type="text" id="VenCNT" class="fadeIn third" name="VenCNT" placeholder="Vencimento" required >' +
@@ -80,6 +86,8 @@ let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
     '</form>' +
     '</div>';
 
+
+//Atualizar produto
 let AP = '<div id="formContent">' + '<form id="AtualizarProd">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
@@ -88,6 +96,7 @@ let AP = '<div id="formContent">' + '<form id="AtualizarProd">' +
     '</form>' +
     '</div>';
 
+//Atualizar funcionario
 let AF = '<div id="formContent">' + '<form id="AtualizarFuncionario">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="CPF do Funcionario">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
@@ -95,7 +104,7 @@ let AF = '<div id="formContent">' + '<form id="AtualizarFuncionario">' +
     '</div>' +
     '</form>' +
     '</div>';
-
+//Atualizar Cliente
 let AC = '<div id="formContent">' + '<form id="AtualizarCliente">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="CPF do Cliente">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
@@ -104,6 +113,7 @@ let AC = '<div id="formContent">' + '<form id="AtualizarCliente">' +
     '</form>' +
     '</div>';
 
+//Atualizar fornecedor
 let ACFR = '<div id="formContent">' + '<form id="AtualizarFornecedor">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do Fornecedor">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
@@ -111,7 +121,7 @@ let ACFR = '<div id="formContent">' + '<form id="AtualizarFornecedor">' +
     '</div>' +
     '</form>' +
     '</div>';
-
+//Atualizar Conta
 let ACNT = '<div id="formContent">' + '<form id="AtualizarContas">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo da Conta">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
@@ -120,18 +130,19 @@ let ACNT = '<div id="formContent">' + '<form id="AtualizarContas">' +
     '</form>' +
     '</div>';
 
+//Tela de vendas
 let TDV = '<div id="formContent">' + '<form id="Venda">' +
-    '<div>'+
+    '<div>' +
     '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf do Cliente" maxlength="11"></input>' +
-    '</div>'+
+    '</div>' +
     '<input type="text" id="cdg" class="fadeIn first" name="cdg" placeholder="Codigo do Produto">' +
     '<input type="text" id="QTDProd" class="fadeIn second" name="QTDProd" placeholder="Quantidade"></input>' +
-    '<button class="btn" id="adicionar">Adicionar</button>'+
+    '<button class="btn" id="adicionar">Adicionar</button>' +
     '<table class="table table-bordered table-dark fadeIn second">' +
-    '<thead"><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th><th scope="col">Quantidade</th><th scope="col">Preço</th><th scope="col">Opções</th></tr></thead"><tbody id="tbody"></tbody></table>'+
-    '<div>'+
-    '<label class="text-secondary fadeIn second">Total: </label> <label class="text-secondary fadeIn second" id="total">0 </label> '+
-    '</div>'+
+    '<thead"><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th><th scope="col">Quantidade</th><th scope="col">Preço</th><th scope="col">Opções</th></tr></thead"><tbody id="tbody"></tbody></table>' +
+    '<div>' +
+    '<label class="text-secondary fadeIn second">Total: </label> <label class="text-secondary fadeIn second" id="total">0 </label> ' +
+    '</div>' +
     '<div>' +
     '<label for="pagCNT" class="text-secondary fadeIn third">Forma de Pagamento: </label> <br>' +
     '<input type="radio" id="vista" class="fadeIn third" value="Vista" name="FormaDePagamento"><label class="text-secondary fadeIn third" for="pagCNT">A vista</label> <br>' +
@@ -143,6 +154,13 @@ let TDV = '<div id="formContent">' + '<form id="Venda">' +
     '</form>' +
     '</div>';
 
+//Tela pagamento de Parcelas
+let PagDP = '<div id="formContent">' + '<form id="PagamentoDeParcela">' +
+    '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf do Cliente" maxlength="11"></input>' +
+    '<input type="text" id="parcela" class="fadeIn first" name="parcela" placeholder="Quantas parcela o mesmo está pagando?">' +
+    '<input type="submit" id="button" class="fadeIn fourth" value="Registrar Pagamento">' +
+    '</form>' +
+    '</div>';
 let LP = '<table class="table">' +
     '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th></tr></thead><tbody id="tbody"></tbody></table>'
 
@@ -157,6 +175,7 @@ let LF = '<table class="table">' +
 $(document).ready(function () {
 
 
+    //criando home
 
     $("#home").click(function (e) {
         $(".active").removeClass("active");
@@ -169,6 +188,8 @@ $(document).ready(function () {
 
 
     });
+
+    //Lista de cadastro
     $("#Cadastrar").click(function (e) {
         $(".active").removeClass("active");
         $("#Cadastrar").addClass("active");
@@ -177,6 +198,7 @@ $(document).ready(function () {
         // $(".masthead-brand").text("Cadastrar");
         // $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Cadastrar produto
     $("#CP").click(function (e) {
         $(".active").removeClass("active");
         $("#CP").addClass("active");
@@ -196,6 +218,7 @@ $(document).ready(function () {
             }
         });
     });
+    //Cadastrar Funcionario
     $("#CF").click(function (e) {
         $(".active").removeClass("active");
         $("#CF").addClass("active");
@@ -210,6 +233,7 @@ $(document).ready(function () {
         $("input#cepFunc").mask("99999-999")
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Cadastrar cliente
     $("#CC").click(function (e) {
         $(".active").removeClass("active");
         $("#CC").addClass("active");
@@ -221,6 +245,7 @@ $(document).ready(function () {
         $("input#cepcli").mask("99999-999")
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Cadastrar contas
     $("#CNT").click(function (e) {
         $(".active").removeClass("active");
         $("#CNT").addClass("active");
@@ -232,6 +257,7 @@ $(document).ready(function () {
         $("#VenCNT").mask("99/99/9999");
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Cadastrar fornecedor
     $("#CFR").click(function (e) {
         $(".active").removeClass("active");
         $("#CFR").addClass("active");
@@ -242,6 +268,7 @@ $(document).ready(function () {
         $("input#cepcfr").mask("99999-999")
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Atualizar Produto
     $("#AP").click(function (e) {
         $(".active").removeClass("active");
         $("#AP").addClass("active");
@@ -250,6 +277,7 @@ $(document).ready(function () {
         $("#h").html(AP);
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Atualizar Funcionario
     $("#AF").click(function (e) {
         $(".active").removeClass("active");
         $("#AF").addClass("active");
@@ -259,6 +287,7 @@ $(document).ready(function () {
         $("#cdg").mask("999.999.999-99");
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Atualizar cliente
     $("#AC").click(function (e) {
         $(".active").removeClass("active");
         $("#AC").addClass("active");
@@ -268,6 +297,7 @@ $(document).ready(function () {
         $("#cdg").mask("999.999.999-99");
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Atualizar Fornecedor
     $("#ACFR").click(function (e) {
         $(".active").removeClass("active");
         $("#ACFR").addClass("active");
@@ -276,6 +306,7 @@ $(document).ready(function () {
         $("#h").html(ACFR);
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Atualizar contas
     $("#ACNT").click(function (e) {
         $(".active").removeClass("active");
         $("#ACNT").addClass("active");
@@ -284,6 +315,7 @@ $(document).ready(function () {
         $("#h").html(ACNT);
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Tela de Vendas
     $("#TDV").click(function (e) {
         $(".active").removeClass("active");
         $("#TDV").addClass("active");
