@@ -4,8 +4,8 @@
     $id_conta = $_GET['cdg'];
 
     if ($conexao) {
-        $select = "select * from contas
-        where id ='".$id_conta."';";
+            $select = "select descricao, to_char(vencimento, 'DD/MM/YYYY') as vencimento, valor, pago from contas 
+            where id ='".$id_conta."';";
 
         include_once("./retornoAtualiza.php");
     }
