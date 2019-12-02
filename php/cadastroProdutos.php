@@ -18,10 +18,10 @@
         $valorProd.",'". $tam ."',". $qntProd .",'".$id_fornecedor."');";
         //echo "$insert";
         if ($res = pg_query($conexao, $insert)) {
-            echo "$res";
+            echo "1" // Tudo certo;
         }
         else {
-            echo "2";
+            echo "2" // Algo inesperado ocorreu;
         }
         
    }
