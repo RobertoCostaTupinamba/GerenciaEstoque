@@ -86,11 +86,24 @@
                                     <a class="dropdown-item" id="DC" href="#">Contas</a>
                                 </div>
                             </li>
+                            <li class="nav-link dropdown" id="Atualizar">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Listar</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" id="LP" href="#">Produto</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="LF" href="#">Funcionario</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="LC" href="#">Cliente</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="LFCR" href="#">Fornecedor</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="LCNT" href="#">Contas</a>
+                                </div>
+                            </li>
                             <a class="nav-link" id="TDV" >Tela de Vendas</a>
                             <a class="nav-link" id="PDP" >Pagamento de Parcelas</a>
-                            <a class="nav-link" id="LF">Listar</a>
                         </div>
-
                     </nav>
                 </nav>
             </div>

@@ -117,7 +117,7 @@ $(function () {
                 setTimeout(function exluiAviso() {
                     $("#mensagemDiv").empty();
                 }, 2000);
-            } else if ($("#cpfcli").val().length < 14 ) {
+            } else if ($("#cpfcli").val().length < 14) {
                 $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Informe um cpf valido</div>');
                 setTimeout(function exluiAviso() {
                     $("#mensagemDiv").empty();
@@ -134,8 +134,8 @@ $(function () {
                     if (venda.produtos.length == 0) {
                         venda = "erro"
                     }
-                    
-                    
+
+
                 } else {
                     venda = {
                         cpfcli: $("#cpfcli").val(),
@@ -152,14 +152,14 @@ $(function () {
                     setTimeout(function exluiAviso() {
                         $("#mensagemDiv").empty();
                     }, 2000);
-                }else{
+                } else {
                     $.ajax({
                         type: "method",
                         url: "url",
                         data: "data",
                         dataType: "dataType",
                         success: function (response) {
-                            
+
                         }
                     });
                 }
@@ -277,7 +277,7 @@ $(function () {
             url: "./php/atualizarProdutos.php",
             data: cdgproduto,
             success: function (response) {
-                
+
                 if (response == 1) {
                     $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Produto não existe</div>');
                     $("#AtualizarProdu").empty();
@@ -350,7 +350,7 @@ $(function () {
             data: cpfFunc,
             success: function (response) {
                 console.log(response);
-                
+
                 if (response == 1) {
                     $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Funcionario não existe</div>');
                     setTimeout(function exluiAviso() {
@@ -526,7 +526,7 @@ $(function () {
                     setTimeout(function exluiAviso() {
                         $("#mensagemDiv").empty();
                     }, 2000);
-                }else{
+                } else {
                     $("#AtualizarConta").html(atualizarContas);
                     response = JSON.parse(response)
                     for (conta of response) {
@@ -561,6 +561,14 @@ $(function () {
 
     //Deletar produto
     $("#DeletarProduto").submit(function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        //request("./php/salvarAttContas.php", data)
+    });
+
+    //Deletar contas
+    $("#DeletarConta").submit(function (e) {
         e.preventDefault();
         var data = $(this).serialize();
         console.log(data);

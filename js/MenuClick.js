@@ -175,11 +175,15 @@ let DC = '<div id="formContent">' + '<form id="DeletarConta">' +
     '<button type="submit" id="DProduto" class="fadeIn fourth btn btn-danger">Deletar</button>' +
     '</form>' +
     '</div>';
-let LP = '<table class="table">' +
-    '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th></tr></thead><tbody id="tbody"></tbody></table>'
+let LP = '<div id="formContent">' + '<form id="ListarProduto">' +
+    '<div class="inputBusca"><input type="text" id="cdg" class="fadeIn third" placeholder="Buscar por codigo ou nome"></div> ' +
+    '</form>' +
+    '</div>' +
+    '<table class="table">' +
+    '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th><th scope="col">Marca</th><th scope="col">Valor</th><th scope="col">Tamanho</th><th scope="col">Quantidade</th><th scope="col">Fornecedor</th></tr></thead><tbody id="tbody"></tbody></table>';
 
 let LF = '<table class="table">' +
-    '<thead><tr><th scope="col">CPF</th><th scope="col">Nome</th></tr></thead><tbody id="tbody"></tbody></table>'
+    '<thead><tr><th scope="col">CPF</th><th scope="col">Nome</th></tr></thead><tbody id="tbody"></tbody></table>';
 
 
 // first second third fourth
@@ -338,6 +342,7 @@ $(document).ready(function () {
         $("#h").html(DP);
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Deletar Conta
     $("#DC").click(function (e) {
         $(".active").removeClass("active");
         $("#DC").addClass("active");
@@ -373,6 +378,18 @@ $(document).ready(function () {
         $(".masthead-brand").text("Listar Produtos");
         $("#h").empty();
         $("#h").html(LP);
+        $("#script").html('<script src="./js/buscar.js"></script>');
+        $.ajax({
+            url: "./php/listarProdutos.php",
+            success: function (response) {
+                response = JSON.parse(response)
+                for (produto of response) {
+                    $("#tbody").append('<tr class="item"><th  >' + produto.id + '</th><td>' + produto.tipo + '</td><td>' + produto.marca + '</td><td>' + produto.valor + '</td><td>' + produto.tamanho + '</td><td>' + produto.quantidade + '</td><td>' + produto.id_fornecedor + ' - ' + produto.nome + '</td></tr>');
+                }
+            }
+        });
+        // $( "#tbody" ).append( '<tr class="item"><th  >1</th><td>Camisa</td></tr>');
+        // $( "#tbody" ).append( '<tr class="item"><th  >2</th><td>Blusa</td></tr>');
 
     });
     $("#LF").click(function (e) {
@@ -381,6 +398,7 @@ $(document).ready(function () {
         $(".masthead-brand").text("Listar Funcionarios");
         $("#h").empty();
         $("#h").html(LF);
+
     });
     $("#logout").click(function (e) {
         $.ajax({
