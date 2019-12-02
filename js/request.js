@@ -20,6 +20,13 @@ $(function () {
         });
     }
 
+    function getCDG() {
+        let cdg = {
+            cdg: $("#cdg").val(),
+        }
+        return cdg;
+    }
+
     //Cadastrar o produto
     $("#CadProd").submit(function (e) {
         e.preventDefault();
@@ -266,9 +273,7 @@ $(function () {
 
     $("#BProduto").click(function (e) {
         e.preventDefault();
-        let cdgproduto = {
-            cdg: $("#cdg").val(),
-        }
+        let cdgproduto = getCDG();
         console.log(cdgproduto);
 
         $.ajax({
@@ -315,10 +320,12 @@ $(function () {
         //$("#fornecedorSelect").val("12"); // exemplo de como selecinar 
     });
 
-    // $("#AtualizarProd").submit(function (e) {
-    //     e.preventDefault();
-
-    // });
+    $("#AtualizarProd").submit(function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        request("./php/salvarAttProdutos.php", data)
+    });
 
     //Atualizar Funcionario
     let atualizarFunc = '<input type="text" id="cpfFunc" class="fadeIn first" name="cpfFunc" placeholder="Cpf" maxlength="11"></input>' +
@@ -340,9 +347,7 @@ $(function () {
 
     $("#BFuncionario").click(function (e) {
         e.preventDefault();
-        let cpfFunc = {
-            cdg: $("#cdg").val(),
-        }
+        let cpfFunc = getCDG()
         $.ajax({
             type: "GET",
             url: "./php/atualizarFuncionarios.php",
@@ -387,9 +392,15 @@ $(function () {
             }
         });
         //ajax
-       
-
     });
+
+    $("#AtualizarFuncionario").submit(function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        request("./php/salvarAttFuncionarios.php", data)
+    });
+
     //Atualizar Cliente
     let atualizarCliente = '<input type="text" id="cpfcli" class="fadeIn first" name="cpfcli" placeholder="Cpf" maxlength="11"></input>' +
         '<input type="text" id="nomecli" class="fadeIn first" name="nomecli" placeholder="Nome" maxlength="100">' +
@@ -403,9 +414,7 @@ $(function () {
 
     $("#BCliente").click(function (e) {
         e.preventDefault();
-        let cpfcli = {
-            cdg: $("#cdg").val(),
-        }
+        let cpfcli = getCDG()
         $.ajax({
             type: "GET",
             url: "./php/atualizarCliente.php",
@@ -439,8 +448,13 @@ $(function () {
             }
         });
         //ajax
+    });
 
-
+    $("#AtualizarCliente").submit(function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        request("./php/salvarAttClientes.php", data)
     });
 
     //Atualizar Fornecedor
@@ -456,9 +470,7 @@ $(function () {
 
     $("#BFornecedor").click(function (e) {
         e.preventDefault();
-        let cdgFornecedor = {
-            cdg: $("#cdg").val(),
-        }
+        let cdgFornecedor = getCDG()
         $.ajax({
             type: "GET",
             url: "./php/atualizaFornecedor.php",
@@ -490,6 +502,13 @@ $(function () {
         $("input#cepcfr").mask("99999-999")
     });
 
+    $("#AtualizarFornecedor").submit(function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        request("./php/salvarAttFornecedores.php", data)
+    });
+
     //Atualizar Contas
     let atualizarContas = '<input type="text" id="desCNT" class="fadeIn third" name="desCNT" placeholder="Descrição" maxlength="100">' +
         '<input type="text" id="VenCNT" class="fadeIn third" name="VenCNT" placeholder="Vencimento" required >' +
@@ -500,9 +519,7 @@ $(function () {
 
     $("#BConta").click(function (e) {
         e.preventDefault();
-        let cdgContas = {
-            cdg: $("#cdg").val(),
-        }
+        let cdgContas = getCDG()
         $.ajax({
             type: "GET",
             url: "./php/atualizaContas.php",
@@ -530,7 +547,11 @@ $(function () {
                 }
             }
         });
-        
-
+    });
+    $("#AtualizarContas").submit(function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        request("./php/salvarAttContas.php", data)
     });
 });
