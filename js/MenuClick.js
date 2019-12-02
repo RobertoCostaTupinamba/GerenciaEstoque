@@ -90,7 +90,7 @@ let CNT = '<div id="formContent">' + '<form id="CadCNT">' +
 //Atualizar produto
 let AP = '<div id="formContent">' + '<form id="AtualizarProd">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
-    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '<input type="submit" id="BProduto" class="fadeIn fourth" value="Buscar">' +
     '<div id="AtualizarProdu">' +
     '</div>' +
     '</form>' +
@@ -99,7 +99,7 @@ let AP = '<div id="formContent">' + '<form id="AtualizarProd">' +
 //Atualizar funcionario
 let AF = '<div id="formContent">' + '<form id="AtualizarFuncionario">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="CPF do Funcionario">' +
-    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '<input type="submit" id="BFuncionario" class="fadeIn fourth" value="Buscar">' +
     '<div id="AtualizarFunc">' +
     '</div>' +
     '</form>' +
@@ -107,7 +107,7 @@ let AF = '<div id="formContent">' + '<form id="AtualizarFuncionario">' +
 //Atualizar Cliente
 let AC = '<div id="formContent">' + '<form id="AtualizarCliente">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="CPF do Cliente">' +
-    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '<input type="submit" id="BCliente" class="fadeIn fourth" value="Buscar">' +
     '<div id="AtualizarCLI">' +
     '</div>' +
     '</form>' +
@@ -116,7 +116,7 @@ let AC = '<div id="formContent">' + '<form id="AtualizarCliente">' +
 //Atualizar fornecedor
 let ACFR = '<div id="formContent">' + '<form id="AtualizarFornecedor">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do Fornecedor">' +
-    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '<input type="submit" id="BFornecedor" class="fadeIn fourth" value="Buscar">' +
     '<div id="AtualizarFornec">' +
     '</div>' +
     '</form>' +
@@ -124,7 +124,7 @@ let ACFR = '<div id="formContent">' + '<form id="AtualizarFornecedor">' +
 //Atualizar Conta
 let ACNT = '<div id="formContent">' + '<form id="AtualizarContas">' +
     '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo da Conta">' +
-    '<input type="submit" id="button" class="fadeIn fourth" value="Buscar">' +
+    '<input type="submit" id="BConta" class="fadeIn fourth" value="Buscar">' +
     '<div id="AtualizarConta">' +
     '</div>' +
     '</form>' +
@@ -325,6 +325,7 @@ $(document).ready(function () {
         $("#cpfcli").mask("999.999.999-99");
         $("#script").html('<script src="./js/request.js"></script>');
     });
+    //Pagamento de parcela
     $("#PDP").click(function (e) {
         $(".active").removeClass("active");
         $("#PDP").addClass("active");

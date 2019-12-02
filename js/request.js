@@ -1,17 +1,15 @@
 $(function () {
-    //Cadastrar o produto
-    $("#CadProd").submit(function (e) {
-        e.preventDefault();
-        var dados_form = $(this).serialize();
-        console.log(dados_form);
+
+    //Função request
+    function request(url, dados_form) {
         $.ajax({
             type: "POST",
-            url: "./php/cadastroProdutos.php",
+            url: url,
             data: dados_form,
             success: function (response) {
                 alert(response);
                 if (response == 1) {
-                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
+                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Sucesso</div>');
                 } else {
                     $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
                 }
@@ -20,75 +18,45 @@ $(function () {
                 }, 2000);
             }
         });
+    }
+
+    //Cadastrar o produto
+    $("#CadProd").submit(function (e) {
+        e.preventDefault();
+        var dados_form = $(this).serialize();
+        console.log(dados_form);
+        request("./php/cadastroProdutos.php", dados_form)
+
     });
     //Cadastrar a conta
     $("#CadCNT").submit(function (event) {
         event.preventDefault();
         var data = $(this).serialize();
         console.log(data);
-        $.ajax({
-            type: "POST",
-            url: "./php/cadastroContas.php",
-            data: data,
-            success: function (response) {
-                alert(response);
-                if (response == 1) {
-                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
-                } else {
-                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
-                }
-                setTimeout(function exluiAviso() {
-                    $("#mensagemDiv").empty();
-                }, 2000);
-            }
-        })
+        request("./php/cadastroContas.php", data);
     })
     //Cadastrar o fornecedor
     $("#CadCFR").submit(function (event) {
         event.preventDefault();
         var data = $(this).serialize();
         console.log(data);
-
-        $.ajax({
-            type: "POST",
-            url: "./php/cadastroFornecedor.php",
-            data: data,
-            success: function (response) {
-                alert(response);
-                if (response == 1) {
-                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
-                } else {
-                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
-                }
-                setTimeout(function exluiAviso() {
-                    $("#mensagemDiv").empty();
-                }, 2000);
-            }
-        })
+        request("./php/cadastroFornecedor.php", data);
     });
     //Cadastrar o funcionario
     $("#CadFunc").submit(function (event) {
         event.preventDefault();
         var data = $(this).serialize();
         console.log(data);
-
-        $.ajax({
-            type: "POST",
-            url: "./php/cadastroFuncionarios.php",
-            data: data,
-            success: function (response) {
-                alert(response);
-                if (response == 1) {
-                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
-                } else {
-                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
-                }
-                setTimeout(function exluiAviso() {
-                    $("#mensagemDiv").empty();
-                }, 2000);
-            }
-        })
+        request("./php/cadastroFuncionarios.php", data);
     })
+
+    //Cadastrar cliente
+    $("#CadCli").submit(function (event) {
+        event.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        request("./php/cadastroCliente.php", data)
+    });
 
     //Pegar valor do radio
     function getRadioValor(name) {
@@ -146,6 +114,11 @@ $(function () {
                 setTimeout(function exluiAviso() {
                     $("#mensagemDiv").empty();
                 }, 2000);
+            } else if ($("#cpfcli").val().length < 14 ) {
+                $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Informe um cpf valido</div>');
+                setTimeout(function exluiAviso() {
+                    $("#mensagemDiv").empty();
+                }, 2000);
             } else {
                 //    let venda =  $(this).serialize();
                 let venda;
@@ -155,6 +128,11 @@ $(function () {
                         produtos: produtosVendidos(),
                         FormaDePagamento: getRadioValor('FormaDePagamento')
                     }
+                    if (venda.produtos.length == 0) {
+                        venda = "erro"
+                    }
+                    
+                    
                 } else {
                     venda = {
                         cpfcli: $("#cpfcli").val(),
@@ -162,6 +140,25 @@ $(function () {
                         FormaDePagamento: getRadioValor('FormaDePagamento'),
                         pacelado: $("#parcela").val()
                     }
+                    if (venda.produtos.length == 0) {
+                        venda = "erro"
+                    }
+                }
+                if (venda == "erro") {
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Adicione produtos</div>');
+                    setTimeout(function exluiAviso() {
+                        $("#mensagemDiv").empty();
+                    }, 2000);
+                }else{
+                    $.ajax({
+                        type: "method",
+                        url: "url",
+                        data: "data",
+                        dataType: "dataType",
+                        success: function (response) {
+                            
+                        }
+                    });
                 }
                 console.log(venda);
             }
@@ -178,29 +175,7 @@ $(function () {
     $("#vista").click(function (e) {
         $("#APrazo").empty();
     });
-    //Cadastrar cliente
-    $("#CadCli").submit(function (event) {
-        event.preventDefault();
-        var data = $(this).serialize();
-        console.log(data);
-        $.ajax({
-            type: "POST",
-            url: "./php/cadastroCliente.php",
-            data: data,
-            success: function (response) {
-                alert(response);
-                if (response == 1) {
-                    $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso</div>');
-                } else {
-                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
-                }
-                setTimeout(function exluiAviso() {
-                    $("#mensagemDiv").empty();
-                }, 2000);
 
-            }
-        })
-    });
     //Excluir uma linha da tabela de produtos na tela de venda
     function Excluir() {
         var par = $(this).parent().parent(); //tr
@@ -288,7 +263,8 @@ $(function () {
         '<option value="null" disabled selected>Selecionar Fornecedor</option>' +
         '</select>' +
         '<input type="submit" class="fadeIn fourth" value="Atualizar">';
-    $("#AtualizarProd").submit(function (e) {
+
+    $("#BProduto").click(function (e) {
         e.preventDefault();
         let cdgproduto = {
             cdg: $("#cdg").val(),
@@ -338,6 +314,11 @@ $(function () {
         //$("#fornecedorSelect").val("12"); // exemplo de como selecinar 
     });
 
+    $("#AtualizarProd").submit(function (e) {
+        e.preventDefault();
+
+    });
+
     //Atualizar Funcionario
     let atualizarFunc = '<input type="text" id="cpfFunc" class="fadeIn first" name="cpfFunc" placeholder="Cpf" maxlength="11"></input>' +
         '<input type="text" id="nomeFunc" class="fadeIn first" name="nomeFunc" placeholder="Nome" maxlength="100">' +
@@ -356,7 +337,7 @@ $(function () {
         // '<input type="text" id="passwordFunc" class="fadeIn fourth" name="senhaFunc" placeholder="Senha" maxlength="32">' +
         '<input type="submit" class="fadeIn fourth" value="Atualizar">';
 
-    $("#AtualizarFuncionario").submit(function (e) {
+    $("#BFuncionario").click(function (e) {
         e.preventDefault();
         let cpfFunc = {
             cdg: $("#cdg").val(),
@@ -378,7 +359,14 @@ $(function () {
                     for (Func of response) {
                         $("#cpfFunc").val(Func.cpf);
                         // $("#passwordFunc").val(Func.senha);
-                        $("#cargoFunc").val(Func.id_cargo);
+                        $("#nomeFunc").val(Func.nome);
+                        $("#TelFunc").val(Func.telefone);
+                        $("#ruaFunc").val(Func.rua);
+                        $("#numFunc").val(Func.numero);
+                        $("#bairroFunc").val(Func.bairro);
+                        $("#cidadeFunc").val(Func.cidade);
+                        $("#cepFunc").val(Func.cep);
+                        $("#cargoFunc").val(Func.tipo);
                         $("#SalFunc").val(Func.salario);
                         $("#nasciFunc").val(Func.data_nascimento);
                         $("#CHFunc").val(Func.carga_horaria);
@@ -410,7 +398,7 @@ $(function () {
         '<input type="text" id="cepcli" class="fadeIn third" name="cepcli" placeholder="CEP">' +
         '<input type="submit" class="fadeIn fourth" value="Atualizar">';
 
-    $("#AtualizarCliente").submit(function (e) {
+    $("#BCliente").click(function (e) {
         e.preventDefault();
         let cpfcli = {
             cdg: $("#cdg").val(),
@@ -431,13 +419,13 @@ $(function () {
                     response = JSON.parse(response)
                     for (cli of response) {
                         $("#cpfcli").val(cli.cpf);
-                        $("#nomecli").val(cli.senha);
-                        $("#Telcli").val(cli.id_cargo);
-                        $("#ruacli").val(cli.salario);
-                        $("#numcli").val(cli.data_nascimento);
-                        $("#bairrocli").val(cli.carga_horaria);
-                        $("#cidadecli").val(cli.conta_corrente);
-                        $("#cepcli").val(cli.dt_inicio_trab);
+                        $("#nomecli").val(cli.nome);
+                        $("#Telcli").val(cli.telefone);
+                        $("#ruacli").val(cli.rua);
+                        $("#numcli").val(cli.numero);
+                        $("#bairrocli").val(cli.bairro);
+                        $("#cidadecli").val(cli.cidade);
+                        $("#cepcli").val(cli.cep);
                     }
                 }
 
@@ -462,8 +450,37 @@ $(function () {
         '<input type="text" id="cepcfr" class="fadeIn third" name="cepcfr" placeholder="CEP">' +
         '<input type="submit" class="fadeIn fourth" value="Atualizar">';
 
-    $("#AtualizarFornecedor").submit(function (e) {
+    $("#BFornecedor").click(function (e) {
         e.preventDefault();
+        let cdgFornecedor = {
+            cdg: $("#cdg").val(),
+        }
+        $.ajax({
+            type: "GET",
+            url: "./php/atualizaFornecedor.php",
+            data: cdgFornecedor,
+            success: function (response) {
+                if (response == 1) {
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Fornecedor não existe</div>');
+                    setTimeout(function exluiAviso() {
+                        $("#mensagemDiv").empty();
+                    }, 2000);
+                } else {
+                    $("#AtualizarCLI").html(atualizarFornecedor);
+                    response = JSON.parse(response)
+                    for (fornecedor of response) {
+                        $("#codcfr").val(fornecedor.id);
+                        $("#nomecfr").val(fornecedor.nome);
+                        $("#Telcfr").val(fornecedor.telefone);
+                        $("#ruacfr").val(fornecedor.rua);
+                        $("#numcfr").val(fornecedor.numero);
+                        $("#bairrocfr").val(fornecedor.bairro);
+                        $("#cidadecfr").val(fornecedor.cidade);
+                        $("#cepcfr").val(fornecedor.cep);
+                    }
+                }
+            }
+        });
         //ajax
         $("#AtualizarFornec").html(atualizarFornecedor);
         $("input#Telcfr").mask("(99) 99999-999?9")
@@ -478,12 +495,38 @@ $(function () {
         '<input type="checkbox" id="pagCNT" class="fadeIn third" value="true" name="pagCNT"><label class="text-secondary fadeIn third" for="pagCNT">Sim</label>' +
         '<input type="submit" class="fadeIn fourth" value="Atualizar">';
 
-    $("#AtualizarContas").submit(function (e) {
+    $("#BConta").click(function (e) {
         e.preventDefault();
-        $("#AtualizarConta").html(atualizarContas);
+        let cdgContas = {
+            cdg: $("#cdg").val(),
+        }
+        $.ajax({
+            type: "GET",
+            url: "./php/atualizaContas.php",
+            data: cdgContas,
+            success: function (response) {
+                if (response == 1) {
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Conta não existe</div>');
+                    setTimeout(function exluiAviso() {
+                        $("#mensagemDiv").empty();
+                    }, 2000);
+                }else{
+                    $("#AtualizarConta").html(atualizarContas);
+                    response = JSON.parse(response)
+                    for (conta of response) {
+                        $("#desCNT").val(conta.descricao);
+                        $("#VenCNT").val(conta.vencimento);
+                        $("#valorCNT").val(conta.valor);
+                        if (conta.pago == 't') {
+                            $("#pagCNT").attr("checked", true)
+                        }
+                    }
+                }
+            }
+        });
+        
         $("input#Telcli").mask("(99) 99999-999?9")
         $("#cpfcli").mask("999.999.999-99");
         $("#VenCNT").mask("99/99/9999");
-        $("#pagCNT").attr("checked", true); // exemplo
     });
 });
