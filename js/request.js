@@ -276,6 +276,7 @@ $(function () {
             url: "./php/atualizarProdutos.php",
             data: cdgproduto,
             success: function (response) {
+                
                 if (response == 1) {
                     $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Produto não existe</div>');
                     $("#AtualizarProdu").empty();
@@ -314,10 +315,10 @@ $(function () {
         //$("#fornecedorSelect").val("12"); // exemplo de como selecinar 
     });
 
-    $("#AtualizarProd").submit(function (e) {
-        e.preventDefault();
+    // $("#AtualizarProd").submit(function (e) {
+    //     e.preventDefault();
 
-    });
+    // });
 
     //Atualizar Funcionario
     let atualizarFunc = '<input type="text" id="cpfFunc" class="fadeIn first" name="cpfFunc" placeholder="Cpf" maxlength="11"></input>' +
@@ -347,6 +348,8 @@ $(function () {
             url: "./php/atualizarFuncionarios.php",
             data: cpfFunc,
             success: function (response) {
+                console.log(response);
+                
                 if (response == 1) {
                     $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Funcionario não existe</div>');
                     setTimeout(function exluiAviso() {
@@ -373,19 +376,19 @@ $(function () {
                         $("#ContaCFunc").val(Func.conta_corrente);
                         $("#DTinicioFunc").val(Func.dt_inicio_trab);
                     }
-
+                    $("#cpfFunc").mask("999.999.999-99");
+                    $("#nasciFunc").mask("99/99/9999");
+                    $("#DTinicioFunc").mask("99/99/9999");
+                    $("input#ContaCFunc").mask("99999-9");
+                    $("input#cepFunc").mask("99999-999")
+                    $("#TelFunc").mask("(99) 99999-999?9")
                 }
 
             }
         });
         //ajax
+       
 
-        $("#cpfFunc").mask("999.999.999-99");
-        $("#nasciFunc").mask("99/99/9999");
-        $("#DTinicioFunc").mask("99/99/9999");
-        $("input#ContaCFunc").mask("99999-9");
-        $("input#cepFunc").mask("99999-999")
-        $("#TelFunc").mask("(99) 99999-999?9")
     });
     //Atualizar Cliente
     let atualizarCliente = '<input type="text" id="cpfcli" class="fadeIn first" name="cpfcli" placeholder="Cpf" maxlength="11"></input>' +
@@ -427,6 +430,9 @@ $(function () {
                         $("#cidadecli").val(cli.cidade);
                         $("#cepcli").val(cli.cep);
                     }
+                    $("input#Telcli").mask("(99) 99999-999?9")
+                    $("#cpfcli").mask("999.999.999-99");
+                    $("input#cepcli").mask("99999-999")
                 }
 
 
@@ -434,9 +440,7 @@ $(function () {
         });
         //ajax
 
-        $("input#Telcli").mask("(99) 99999-999?9")
-        $("#cpfcli").mask("999.999.999-99");
-        $("input#cepcli").mask("99999-999")
+
     });
 
     //Atualizar Fornecedor
@@ -466,7 +470,6 @@ $(function () {
                         $("#mensagemDiv").empty();
                     }, 2000);
                 } else {
-                    $("#AtualizarCLI").html(atualizarFornecedor);
                     response = JSON.parse(response)
                     for (fornecedor of response) {
                         $("#codcfr").val(fornecedor.id);
@@ -521,12 +524,13 @@ $(function () {
                             $("#pagCNT").attr("checked", true)
                         }
                     }
+                    $("input#Telcli").mask("(99) 99999-999?9")
+                    $("#cpfcli").mask("999.999.999-99");
+                    $("#VenCNT").mask("99/99/9999");
                 }
             }
         });
         
-        $("input#Telcli").mask("(99) 99999-999?9")
-        $("#cpfcli").mask("999.999.999-99");
-        $("#VenCNT").mask("99/99/9999");
+
     });
 });
