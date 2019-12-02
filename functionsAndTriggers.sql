@@ -64,7 +64,7 @@ insert into fornecedores_local values(1, 'Mateus', '38414444', 1);
 --Function compra de algum produto.
 --Função para estabelecer atomicidade na transação.
 create or replace function transacao_Compra_Fornecedor(cpf text, tip text, marc text, val numeric, tam text, qnt int,
-													    id_fornecedor int)
+													    id_fornecedor text)
 returns void as $$
 	declare
 		id_comp int;
@@ -127,9 +127,6 @@ returns void as $$
 	end;
 $$ language plpgsql;
 
-select cadastrar_Fornecedor_Endereco('Jorge', '991717143', 'Rua', 219, 'Centro', 'Coromandel', '38550000');
-select * from fornecedores_local;
-select * from endereco;
 
 
 
@@ -138,25 +135,38 @@ select * from endereco;
 --Função para cadastrar Funcionario.
 create or replace function cadastrar_Funcionario_Endereco(cpf text, nome text, telefone text, rua text, numero int,
 														 bairro text, cidade text, cep text, cargo text, salario numeric,
-														 dataNascimento date, dataInicio date, cargH int, contaCorrente text, senha text)
+														 dataNascimento date, dataInicio date, cargH int, contaCorrente text)
 returns void as $$
 	declare
 		auxSeq int;
+		cadExist int;
 	begin
+	
 		insert into endereco values(nextval('endereco_id_seq'), rua, numero, bairro, cidade, cep);
 		select last_value into auxSeq from endereco_id_seq;
 		insert into pessoas values(cpf, nome, telefone, auxSeq);
-		insert into cargo values(nextval('cargo_id_seq'),cargo);
-		select last_value into auxSeq from cargo_id_seq;
-		insert into funcionarios(senha, cpf, id_cargo, salario, data_nascimento, carga_horaria, conta_corrente,
-							   dt_inicio_trab) values(senha, cpf, auxSeq, salario, dataNascimento, cargH, 
+		cadExist := 0;
+		select count(id) into cadExist from cargo c where c.tipo = cargo;
+		
+		if (cadExist > 0) then
+			select id into cadExist from cargo c where c.tipo = cargo;
+			insert into funcionarios(cpf, id_cargo, salario, data_nascimento, carga_horaria, conta_corrente,
+							   dt_inicio_trab) values(cpf, cadExist, salario, dataNascimento, cargH, 
 													 contaCorrente, dataInicio);
+		else
+			insert into cargo values(nextval('cargo_id_seq'),cargo);
+			select last_value into auxSeq from cargo_id_seq;
+			insert into funcionarios(cpf, id_cargo, salario, data_nascimento, carga_horaria, conta_corrente,
+								   dt_inicio_trab) values(cpf, auxSeq, salario, dataNascimento, cargH, 
+														 contaCorrente, dataInicio);
+		end if;
 	end;
 $$ language plpgsql;
 
 select * from funcionarios;
 select * from endereco;
 select * from pessoas;
+select * from cliente
 
 
 -- ********************************************** NEW FUNCTION *******************************************************
@@ -181,18 +191,56 @@ create or replace function verify_exist_pessoas_fun()
 returns trigger as $$
 	declare
 		exist int;
+		cp text;
 	begin
 		select count(*) into exist from pessoas
 		where cpf = new.cpf;
 		
 		if (exist > 0) then
-			return null;
+			select nome into cp from pessoas
+			where cpf = new.cpf;
+			if (cp = new.nome) then
+				return null;
+			else
+				raise exception 'Esse CPF já foi cadastrado em outro nome.';
+			end if;
 		end if;
 		return new;
 	end;
 $$ language plpgsql;
 
+
 create trigger verify_exist_pessoas_tri
 before insert on pessoas
 for each row execute procedure verify_exist_pessoas_fun();
+
+
+
+--*****************************************************VIEWS********************************************8
+create or replace view retornaDadosCliente as
+select p.cpf, p.nome, p.telefone, e.rua, e.numero, e.bairro, e.cidade, e.cep 
+        from cliente c, endereco e, pessoas p
+       	where c.cpf = p.cpf and
+        p.id_Endereco = e.id
+
+--Testing
+select * from retornaDadosCliente
+      where  cpf = '999.999.999-99';
+
+-- NEW VIEW
+create or replace view retornaDadosFuncionarios as
+select f.cpf,p.nome,p.telefone,e.rua, e.numero, e.bairro, e.cidade, e.cep,
+        c.tipo, f.salario, to_char(f.data_nascimento,'DD/MM/YYYY') as data_nascimento, 
+		to_char(f.dt_inicio_trab,'DD/MM/YYYY') as dt_inicio_trab , f.carga_horaria, f.conta_corrente 
+        from funcionarios f, endereco e, pessoas p, cargo c
+        where f.id_cargo = c.id and 
+        f.cpf = p.cpf and
+        p.id_Endereco = e.id;
+		
+drop view retornaDadosFuncionarios;
+        
+		
+select * from retornaDadosFuncionarios
+	where cpf = '999.999.999-99';
+
 

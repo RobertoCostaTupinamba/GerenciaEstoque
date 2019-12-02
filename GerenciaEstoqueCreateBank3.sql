@@ -69,7 +69,6 @@ CREATE TABLE Cliente (
 
 CREATE TABLE Funcionarios (
   cpf text not null,
-  senha text NOT NULL,
   id_cargo int,
   salario numeric DEFAULT 0.0,
   data_nascimento date,
@@ -82,6 +81,7 @@ CREATE TABLE Funcionarios (
   check (carga_horaria >= 0),
   check (carga_horaria < 45)
 );
+
 
 CREATE TABLE Cargo (
   id int PRIMARY KEY,
@@ -107,14 +107,16 @@ CREATE TABLE Produtos_Vendidos (
   dataVenda date not null
 );
 
-CREATE TABLE Vendas_Produtos_Ass (
+CREATE TABLE Venda (
   id SERIAL PRIMARY KEY,
-  tipoPagamento text,
-  id_Vendas int,
-  id_Produtos text,
-  id_Aprazo int
+  parcelas int,
+  parcelas_pagas int,
+  dataVenda date,
+  dataUltimoPagamento date,
+  pago boolean,
+  avista boolean,
+  id_cliente text
 );
-
 CREATE TABLE Produtos_Compras (
   id SERIAL PRIMARY KEY,
   id_Produtos text,
@@ -139,15 +141,15 @@ create table Produtos_Vendidos_APrazo (
 	pago boolean
 );
 
-ALTER TABLE Vendas_Produtos_Ass ADD FOREIGN KEY (id_aprazo) REFERENCES Produtos_Vendidos_APrazo (id);
 
-ALTER TABLE Vendas_Cliente_Ass ADD FOREIGN KEY (id_aprazo) REFERENCES Produtos_Vendidos_APrazo (id);
 
-ALTER TABLE Fornecedores_Produtos ADD FOREIGN KEY (Fornecedor_ID) REFERENCES Fornecedores_Local (id);
+ALTER TABLE Compras ADD FOREIGN KEY (Fornecedor_ID) REFERENCES Fornecedores_Local (id)
+on delete cascade 
+on update cascade;
 
-ALTER TABLE Compras ADD FOREIGN KEY (Fornecedor_ID) REFERENCES Fornecedores_Local (id);
+ALTER TABLE Cliente ADD FOREIGN KEY (cpf) REFERENCES Pessoas (cpf)
+on update cascade;
 
-ALTER TABLE Cliente ADD FOREIGN KEY (cpf) REFERENCES Pessoas (cpf);
 
 ALTER TABLE Funcionarios ADD FOREIGN KEY (cpf) REFERENCES Pessoas (cpf);
 
@@ -157,16 +159,23 @@ ALTER TABLE Fornecedores_Local ADD FOREIGN KEY (id_Endereco) REFERENCES Endereco
 
 ALTER TABLE Pessoas ADD FOREIGN KEY (id_Endereco) REFERENCES Endereco (id);
 
-ALTER TABLE Vendas_Produtos_Ass ADD FOREIGN KEY (id_Vendas) REFERENCES Produtos_Vendidos (id);
+ALTER TABLE Produtos_Vendidos  ADD FOREIGN KEY (id_venda) REFERENCES Venda (id)
+on delete cascade 
+on update cascade;
 
-ALTER TABLE Vendas_Produtos_Ass ADD FOREIGN KEY (id_Produtos) REFERENCES Produtos (id);
+ALTER TABLE Venda ADD FOREIGN KEY (id_cliente) REFERENCES Cliente (cpf);
+update cascade;
 
 ALTER TABLE Produtos_Compras ADD FOREIGN KEY (id_Compras) REFERENCES Compras (id);
 
-ALTER TABLE Produtos_Compras ADD FOREIGN KEY (id_Produtos) REFERENCES Produtos (id);
+ALTER TABLE Produtos_Vendidos ADD FOREIGN KEY (id_prod) REFERENCES Produtos (id);
+on delete cascade 
+on update cascade;
 
-ALTER TABLE Vendas_Cliente_Ass ADD FOREIGN KEY (id_Venda) REFERENCES Produtos_Vendidos (id);
+ALTER TABLE Produtos_Compras ADD FOREIGN KEY (id_Produtos) REFERENCES Produtos (id)
+on delete cascade 
+on update cascade;
 
-ALTER TABLE Vendas_Cliente_Ass ADD FOREIGN KEY (id_Cliente) REFERENCES Cliente (cpf);
+
 
 
