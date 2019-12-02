@@ -161,6 +161,20 @@ let PagDP = '<div id="formContent">' + '<form id="PagamentoDeParcela">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Registrar Pagamento">' +
     '</form>' +
     '</div>';
+
+//Deletar Produto
+let DP = '<div id="formContent">' + '<form id="DeletarProduto">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo do produto">' +
+    '<button type="submit" id="DProduto" class="fadeIn fourth btn btn-danger">Deletar</button>' +
+    '</form>' +
+    '</div>';
+
+//Deletar Contas
+let DC = '<div id="formContent">' + '<form id="DeletarConta">' +
+    '<input type="text" id="cdg" class="fadeIn third" name="cdg" placeholder="Codigo da Conta">' +
+    '<button type="submit" id="DProduto" class="fadeIn fourth btn btn-danger">Deletar</button>' +
+    '</form>' +
+    '</div>';
 let LP = '<table class="table">' +
     '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th></tr></thead><tbody id="tbody"></tbody></table>'
 
@@ -313,6 +327,23 @@ $(document).ready(function () {
         $(".masthead-brand").text("Atualizar Contas");
         $("#h").empty();
         $("#h").html(ACNT);
+        $("#script").html('<script src="./js/request.js"></script>');
+    });
+    //Deletar Produto
+    $("#DP").click(function (e) {
+        $(".active").removeClass("active");
+        $("#DP").addClass("active");
+        $(".masthead-brand").text("Deletar Produtos");
+        $("#h").empty();
+        $("#h").html(DP);
+        $("#script").html('<script src="./js/request.js"></script>');
+    });
+    $("#DC").click(function (e) {
+        $(".active").removeClass("active");
+        $("#DC").addClass("active");
+        $(".masthead-brand").text("Deletar Contas");
+        $("#h").empty();
+        $("#h").html(DC);
         $("#script").html('<script src="./js/request.js"></script>');
     });
     //Tela de Vendas

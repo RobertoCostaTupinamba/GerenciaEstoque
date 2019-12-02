@@ -34,7 +34,7 @@
             <div class="inner">
                 <div class="d-flex justify-content-between align-items-center">
                     <h3 class="masthead-brand titulo">Home</h3>
-                    <button id="logout" class="btn btn-danger">Deslogar</button>
+                    <!-- <button id="logout" class="btn btn-danger">Deslogar</button> -->
                 </div>
 
 
@@ -77,9 +77,17 @@
                                     <a class="dropdown-item" id="ACNT" href="#">Contas</a>
                                 </div>
                             </li>
+                            <li class="nav-link dropdown" id="Atualizar">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Deletar</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" id="DP" href="#">Produto</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="DC" href="#">Contas</a>
+                                </div>
+                            </li>
                             <a class="nav-link" id="TDV" >Tela de Vendas</a>
                             <a class="nav-link" id="PDP" >Pagamento de Parcelas</a>
-                            <a class="nav-link" id="LP">Deletar</a>
                             <a class="nav-link" id="LF">Listar</a>
                         </div>
 

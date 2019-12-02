@@ -68,15 +68,11 @@ $(function () {
     //Pegar valor do radio
     function getRadioValor(name) {
         var rads = document.getElementsByName(name);
-
         for (var i = 0; i < rads.length; i++) {
             if (rads[i].checked) {
                 return rads[i].value;
-
             }
-
         }
-
         return null;
     }
 
@@ -554,4 +550,21 @@ $(function () {
         console.log(data);
         request("./php/salvarAttContas.php", data)
     });
+
+    //Pagamento de Parcelas
+    $("#PagamentoDeParcela").submit(function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        //request("./php/salvarAttContas.php", data)
+    });
+
+    //Deletar produto
+    $("#DeletarProduto").submit(function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        console.log(data);
+        //request("./php/salvarAttContas.php", data)
+    });
+
 });
