@@ -182,8 +182,12 @@ let LP = '<div id="formContent">' + '<form id="ListarProduto">' +
     '<table class="table">' +
     '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th><th scope="col">Marca</th><th scope="col">Valor</th><th scope="col">Tamanho</th><th scope="col">Quantidade</th><th scope="col">Fornecedor</th></tr></thead><tbody id="tbody"></tbody></table>';
 
-let LF = '<table class="table">' +
-    '<thead><tr><th scope="col">CPF</th><th scope="col">Nome</th></tr></thead><tbody id="tbody"></tbody></table>';
+let LF = '<div id="formContent">' + '<form id="ListarFuncionario">' +
+    '<div class="inputBusca"><input type="text" id="cdg" class="fadeIn third" placeholder="Buscar por codigo ou nome"></div> ' +
+    '</form>' +
+    '</div>' +
+    '<table class="table">' +
+    '<thead><tr><th scope="col">CPF</th><th scope="col">Nome</th><th scope="col">Telefone</th><th scope="col">Cargo</th><th scope="col">Salário</th><th scope="col">Data do Nascimento</th><th scope="col">Data inicio trabalho</th><th scope="col">Carga Horaria</th><th scope="col">Conta corrente</th></tr></thead><tbody id="tbody"></tbody></table>';
 
 
 // first second third fourth
@@ -398,6 +402,16 @@ $(document).ready(function () {
         $(".masthead-brand").text("Listar Funcionarios");
         $("#h").empty();
         $("#h").html(LF);
+        $("#script").html('<script src="./js/buscar.js"></script>');
+        $.ajax({
+            url: "./php/listarFuncionario.php",
+            success: function (response) {
+                response = JSON.parse(response)
+                for (funcionario of response) {
+                    $("#tbody").append('<tr class="item"><th  >' + funcionario.cpf + '</th><td>' + funcionario.nome + '</td><td>' + funcionario.telefone + '</td><td>' + funcionario.tipo + '</<td><td>' + funcionario.salario + '</td><td>' + funcionario.data_nascimento + '</td><td>' + funcionario.dt_inicio_trab + '</td><td>' + funcionario.carga_horaria + '</td><td>' + funcionario.conta_corrente + '</td></tr>');
+                }
+            }
+        });
 
     });
     $("#logout").click(function (e) {
