@@ -102,10 +102,12 @@ CREATE TABLE Contas (
 
 CREATE TABLE Produtos_Vendidos (
   id SERIAL PRIMARY KEY,
-  id_prod int NOT NULL,
+  id_prod text NOT NULL,
+  id_venda int not null,
   quantidade int,
   dataVenda date not null
 );
+
 
 CREATE TABLE Venda (
   id SERIAL PRIMARY KEY,
@@ -163,12 +165,12 @@ ALTER TABLE Produtos_Vendidos  ADD FOREIGN KEY (id_venda) REFERENCES Venda (id)
 on delete cascade 
 on update cascade;
 
-ALTER TABLE Venda ADD FOREIGN KEY (id_cliente) REFERENCES Cliente (cpf);
-update cascade;
+ALTER TABLE Venda ADD FOREIGN KEY (id_cliente) REFERENCES Cliente (cpf)
+on update cascade;
 
 ALTER TABLE Produtos_Compras ADD FOREIGN KEY (id_Compras) REFERENCES Compras (id);
 
-ALTER TABLE Produtos_Vendidos ADD FOREIGN KEY (id_prod) REFERENCES Produtos (id);
+ALTER TABLE Produtos_Vendidos ADD FOREIGN KEY (id_prod) REFERENCES Produtos (id)
 on delete cascade 
 on update cascade;
 
