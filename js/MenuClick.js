@@ -216,7 +216,7 @@ let LCNT = '<div id="formContent">' + '<form id="ListarContas">' +
     '</form>' +
     '</div>' +
     '<table class="table">' +
-    '<thead><tr><th scope="col">Descrição</th><th scope="col">Vencimento</th><th scope="col">Valor</th><th scope="col">Pago</th></thead><tbody id="tbody"></tbody></table>';
+    '<thead><tr><th scope="col">ID</th><th scope="col">Descrição</th><th scope="col">Vencimento</th><th scope="col">Valor</th><th scope="col">Pago</th></thead><tbody id="tbody"></tbody></table>';
 
 // first second third fourth
 
@@ -509,10 +509,10 @@ $(document).ready(function () {
                 response = JSON.parse(response)
                 for (Contas of response) {
                     if (Contas.pago == "t") {
-                        $("#tbody").append('<tr class="item"><th>' + Contas.descricao + '</th><td>' + Contas.vencimento + '</td><td>' + Contas.valor + '</td><td>' + "Pago" + '</td></tr>');
+                        $("#tbody").append('<tr class="item"><th>' + Contas.id + '</th><th>' + Contas.descricao + '</th><td>' + Contas.vencimento + '</td><td>' + Contas.valor + '</td><td>' + "Pago" + '</td></tr>');
 
                     }else{
-                        $("#tbody").append('<tr class="item"><th>' + Contas.descricao + '</th><td>' + Contas.vencimento + '</td><td>' + Contas.valor + '</td><td>' + "Não Pago" + '</td></tr>');
+                        $("#tbody").append('<tr class="item"><th>' + Contas.id + '</th><th>' + Contas.descricao + '</th><td>' + Contas.vencimento + '</td><td>' + Contas.valor + '</td><td>' + "Não Pago" + '</td></tr>');
                     }
                 }
             }
