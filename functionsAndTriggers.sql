@@ -216,6 +216,11 @@ for each row execute procedure verify_exist_pessoas_fun();
 
 
 
+-- ********************************************** NEW FUNCTION *******************************************************
+--Função de atualizar.
+
+create or replace function attContas()
+
 --*****************************************************VIEWS********************************************8
 create or replace view retornaDadosCliente as
 select p.cpf, p.nome, p.telefone, e.rua, e.numero, e.bairro, e.cidade, e.cep 
@@ -242,5 +247,9 @@ drop view retornaDadosFuncionarios;
 		
 select * from retornaDadosFuncionarios
 	where cpf = '999.999.999-99';
+	
+	
+	
+	
 
 

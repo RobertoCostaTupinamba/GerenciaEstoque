@@ -1,27 +1,20 @@
 <?php
     include_once("./conexao.php");
+    include_once("./produtos.php");
     
-    $id_prod = $_POST['CodProd'];
-    $tipoProd = $_POST["TipProd"];
-    $marcaProd = $_POST["MarcaProd"];
-    $valorProd = $_POST["ValorProd"];
-    $qntProd = $_POST["QTDProd"];
-    $tam = $_POST["select"];
-    $id_fornecedor = $_POST["select1"];
 
     //Replace da virgula que foi colocada no front.
-    $valorProd = str_replace(".", "", $valorProd);
-    $valorProd = str_replace("," , ".", $valorProd);
+    include_once("./excluiMascara.php");
 
    if ($conexao) {
         $insert = "select transacao_Compra_Fornecedor('".$id_prod."','".$tipoProd."','".$marcaProd."',".
-        $valorProd.",'". $tam ."',". $qntProd .",'".$id_fornecedor."');";
-        //echo "$insert";
+        $valor.",'". $tam ."',". $qntProd .",'".$id_fornecedor."');";
+
         if ($res = pg_query($conexao, $insert)) {
-            echo "1" // Tudo certo;
+            echo "1"; // Tudo certo;
         }
         else {
-            echo "2" // Algo inesperado ocorreu;
+            echo "2"; // Algo inesperado ocorreu;
         }
         
    }

@@ -1,31 +1,17 @@
 <?php
     include_once("./conexao.php");
 
-    $cpf = $_POST['cpfFunc'];
-    $nome = $_POST['nomeFunc'];
-    $telefone = $_POST['TelFunc'];
-    $rua = $_POST['ruaFunc'];
-    $numero = $_POST['numFunc'];
-    $bairro = $_POST['bairroFunc'];
-    $cidade = $_POST['cidadeFunc'];
-    $cep = $_POST['cepFunc'];
-    $cargo = $_POST['cargo'];
-    $salario = $_POST['SalFunc'];
-    $dataNascimento = $_POST['nasciFunc'];
-    $dataInicio = $_POST['DTinicioFunc'];
-    $cargaHoraria = $_POST['CHFunc'];
-    $contaCorrente = $_POST['ContaCFunc'];
+    include_once("./funcionarios.php");
 
     //Tratamento de mascaras.
-    $salario = str_replace(".", "", $salario);
-    $salario = str_replace(",", ".", $salario);
+    include_once("./excluiMascara.php");
 
     if ($conexao) {
         $insert = "select cadastrar_Funcionario_Endereco('".$cpf."','".$nome."', '".$telefone."','"
-        .$rua."',".$numero.",'".$bairro."','".$cidade."','".$cep."','".$cargo."',".$salario.",'"
+        .$rua."',".$numero.",'".$bairro."','".$cidade."','".$cep."','".$cargo."',".$valor.",'"
         .$dataNascimento."','".$dataInicio."',".$cargaHoraria.",'".$contaCorrente."');";
-        
-        if ($res = pg_query($conexao, $insert)) {
+        $res = pg_query($conexao, $insert);
+        if ($res) {
             echo "1";
         }
         else {

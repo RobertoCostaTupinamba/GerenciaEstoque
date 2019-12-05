@@ -296,8 +296,12 @@ $(function () {
                                 console.log(response[key]);
                                 $('#fornecedorSelect').append('<option value="' + response[key].id + '">' + response[key].id + ' - ' + response[key].nome + '</option>');
                             }
+                            // $("#fornecedorSelect").val("133");
+                            // $("#fornecedorSelect").val(toString(response["id_fornecedor"]) );
                         }
                     });
+                    console.log(response);
+                    
                     for (prod of response) {
                         console.log(prod.id_fornecedor);
 
@@ -307,7 +311,7 @@ $(function () {
                         $("#ValorProd").val(prod.valor);
                         $("#QTDProd").val(prod.quantidade);
                         $("#tamanho").val(prod.tamanho);
-                        $("#fornecedorSelect").val("" + prod.id_fornecedor);
+                        
                     }
                 }
 
