@@ -11,10 +11,17 @@
         $valor.",'". $tam ."',". $qntProd .",'".$id_fornecedor."');";
 
         if ($res = pg_query($conexao, $insert)) {
+<<<<<<< HEAD
             echo "1"; // Tudo certo;
         }
         else {
             echo "2"; // Algo inesperado ocorreu;
+=======
+            echo "1" ;// Tudo certo;
+        }
+        else {
+            echo "2" ;// Algo inesperado ocorreu;
+>>>>>>> 5de2e7127617f76b0510b898868cc0179e38377f
         }
         
    }

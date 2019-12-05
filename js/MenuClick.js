@@ -182,9 +182,41 @@ let LP = '<div id="formContent">' + '<form id="ListarProduto">' +
     '<table class="table">' +
     '<thead><tr><th scope="col">Codigo Produto</th><th scope="col">Produto</th><th scope="col">Marca</th><th scope="col">Valor</th><th scope="col">Tamanho</th><th scope="col">Quantidade</th><th scope="col">Fornecedor</th></tr></thead><tbody id="tbody"></tbody></table>';
 
-let LF = '<table class="table">' +
-    '<thead><tr><th scope="col">CPF</th><th scope="col">Nome</th></tr></thead><tbody id="tbody"></tbody></table>';
+let LF = '<div id="formContent">' + '<form id="ListarFuncionario">' +
+    '<div class="inputBusca"><input type="text" id="cdg" class="fadeIn third" placeholder="Buscar por codigo ou nome"></div> ' +
+    '</form>' +
+    '</div>' +
+    '<table class="table">' +
+    '<thead><tr><th scope="col">CPF</th><th scope="col">Nome</th><th scope="col">Telefone</th><th scope="col">Cargo</th><th scope="col">Salário</th><th scope="col">Data do Nascimento</th><th scope="col">Data inicio trabalho</th><th scope="col">Carga Horaria</th><th scope="col">Conta corrente</th></tr></thead><tbody id="tbody"></tbody></table>';
 
+let LGF = '<div id="formContent">' + '<form id="ListarLogradouroFuncionario">' +
+    '<div class="inputBusca"><input type="text" id="cdg" class="fadeIn third" placeholder="Buscar por codigo ou nome"></div> ' +
+    '</form>' +
+    '</div>' +
+    '<table class="table">' +
+    '<thead><tr><th scope="col">CPF</th><th scope="col">Nome</th><th scope="col">Rua</th><th scope="col">Nº da Casa</th><th scope="col">Bairro</th><th scope="col">Cidade</th><th scope="col">CEP</th></tr></thead><tbody id="tbody"></tbody></table>';
+
+let LC = '<div id="formContent">' + '<form id="ListarCliente">' +
+    '<div class="inputBusca"><input type="text" id="cdg" class="fadeIn first" placeholder="Buscar por codigo ou nome"></div> ' +
+    '</form>' +
+    '</div>' +
+    '<table class="table">' +
+    '<thead><tr><th scope="col">CPF</th><th scope="col">Nome</th><th scope="col">Rua</th><th scope="col">Nº da Casa</th><th scope="col">Bairro</th><th scope="col">Cidade</th><th scope="col">CEP</th></tr></thead><tbody id="tbody"></tbody></table>';
+
+
+let LFCR = '<div id="formContent">' + '<form id="ListarFornecedor">' +
+    '<div class="inputBusca"><input type="text" id="cdg" class="fadeIn first" placeholder="Buscar por codigo ou nome"></div> ' +
+    '</form>' +
+    '</div>' +
+    '<table class="table">' +
+    '<thead><tr><th scope="col">ID</th><th scope="col">Nome</th><th scope="col">Telefone</th><th scope="col">Rua</th><th scope="col">Nº da Casa</th><th scope="col">Bairro</th><th scope="col">Cidade</th><th scope="col">CEP</th></tr></thead><tbody id="tbody"></tbody></table>';
+
+let LCNT = '<div id="formContent">' + '<form id="ListarContas">' +
+    '<div class="inputBusca"><input type="text" id="cdg" class="fadeIn first" placeholder="Buscar por codigo ou nome"></div> ' +
+    '</form>' +
+    '</div>' +
+    '<table class="table">' +
+    '<thead><tr><th scope="col">Descrição</th><th scope="col">Vencimento</th><th scope="col">Valor</th><th scope="col">Pago</th></thead><tbody id="tbody"></tbody></table>';
 
 // first second third fourth
 
@@ -398,6 +430,93 @@ $(document).ready(function () {
         $(".masthead-brand").text("Listar Funcionarios");
         $("#h").empty();
         $("#h").html(LF);
+        $("#script").html('<script src="./js/buscar.js"></script>');
+        $.ajax({
+            url: "./php/listarFuncionario.php",
+            success: function (response) {
+                response = JSON.parse(response)
+                for (funcionario of response) {
+                    $("#tbody").append('<tr class="item"><th  >' + funcionario.cpf + '</th><td>' + funcionario.nome + '</td><td>' + funcionario.telefone + '</td><td>' + funcionario.tipo + '</<td><td>' + funcionario.salario + '</td><td>' + funcionario.data_nascimento + '</td><td>' + funcionario.dt_inicio_trab + '</td><td>' + funcionario.carga_horaria + '</td><td>' + funcionario.conta_corrente + '</td></tr>');
+                }
+            }
+        });
+
+    });
+    $("#LGF").click(function (e) {
+        $(".active").removeClass("active");
+        $("#LGF").addClass("active");
+        $(".masthead-brand").text("Listar Funcionarios");
+        $("#h").empty();
+        $("#h").html(LGF);
+        $("#script").html('<script src="./js/buscar.js"></script>');
+        $.ajax({
+            url: "./php/listarFuncionario.php",
+            success: function (response) {
+                response = JSON.parse(response)
+                for (funcionario of response) {
+                    $("#tbody").append('<tr class="item"><th  >' + funcionario.cpf + '</th><td>' + funcionario.nome + '</td><td>' + funcionario.rua + '</td><td>' + funcionario.numero + '</<td><td>' + funcionario.bairro + '</td><td>' + funcionario.cidade + '</td><td>' + funcionario.cep + '</tr>');
+                }
+            }
+        });
+
+    });
+    $("#LC").click(function (e) {
+        $(".active").removeClass("active");
+        $("#LC").addClass("active");
+        $(".masthead-brand").text("Listar Funcionarios");
+        $("#h").empty();
+        $("#h").html(LC);
+        $("#script").html('<script src="./js/buscar.js"></script>');
+        $.ajax({
+            url: "./php/listarCliente.php",
+            success: function (response) {
+                response = JSON.parse(response)
+                for (Cliente of response) {
+                    $("#tbody").append('<tr class="item"><th  >' + Cliente.cpf + '</th><td>' + Cliente.nome + '</td><td>' + Cliente.rua + '</td><td>' + Cliente.numero + '</<td><td>' + Cliente.bairro + '</td><td>' + Cliente.cidade + '</td><td>' + Cliente.cep + '</tr>');
+                }
+            }
+        });
+
+    });
+    $("#LFCR").click(function (e) {
+        $(".active").removeClass("active");
+        $("#LFCR").addClass("active");
+        $(".masthead-brand").text("Listar Funcionarios");
+        $("#h").empty();
+        $("#h").html(LFCR);
+        $("#script").html('<script src="./js/buscar.js"></script>');
+        $.ajax({
+            url: "./php/listarFornecedor.php",
+            success: function (response) {
+                response = JSON.parse(response)
+                for (Fornecedor of response) {
+                    $("#tbody").append('<tr class="item"><th  >' + Fornecedor.id + '</th><td>' + Fornecedor.nome + '</td><td>' + Fornecedor.telefone + '</td><td>' + Fornecedor.rua + '</td><td>' + Fornecedor.numero + '</<td><td>' + Fornecedor.bairro + '</td><td>' + Fornecedor.cidade + '</td><td>' + Fornecedor.cep + '</tr>');
+                }
+            }
+        });
+
+    });
+    $("#LCNT").click(function (e) {
+        $(".active").removeClass("active");
+        $("#LCNT").addClass("active");
+        $(".masthead-brand").text("Listar Funcionarios");
+        $("#h").empty();
+        $("#h").html(LCNT);
+        $("#script").html('<script src="./js/buscar.js"></script>');
+        $.ajax({
+            url: "./php/listarContas.php",
+            success: function (response) {
+                response = JSON.parse(response)
+                for (Contas of response) {
+                    if (Contas.pago == "t") {
+                        $("#tbody").append('<tr class="item"><th>' + Contas.descricao + '</th><td>' + Contas.vencimento + '</td><td>' + Contas.valor + '</td><td>' + "Pago" + '</td></tr>');
+
+                    }else{
+                        $("#tbody").append('<tr class="item"><th>' + Contas.descricao + '</th><td>' + Contas.vencimento + '</td><td>' + Contas.valor + '</td><td>' + "Não Pago" + '</td></tr>');
+                    }
+                }
+            }
+        });
 
     });
     $("#logout").click(function (e) {

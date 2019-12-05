@@ -40,16 +40,13 @@
 
                 <nav class="nav nav-masthead justify-content-center">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                            aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <a class="nav-link" id="home">Home</a>
                             <li class="nav-link dropdown" id="Cadastrar">
-                                <a class="dropdown-toggle " data-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Cadastrar</a>
+                                <a class="dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cadastrar</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" id="CP" href="#">Produto</a>
                                     <div class="dropdown-divider"></div>
@@ -63,8 +60,7 @@
                                 </div>
                             </li>
                             <li class="nav-link dropdown" id="Atualizar">
-                                <a class="dropdown-toggle " data-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Atualizar</a>
+                                <a class="dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Atualizar</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" id="AP" href="#">Produto</a>
                                     <div class="dropdown-divider"></div>
@@ -78,8 +74,7 @@
                                 </div>
                             </li>
                             <li class="nav-link dropdown" id="Atualizar">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Deletar</a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Deletar</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" id="DP" href="#">Produto</a>
                                     <div class="dropdown-divider"></div>
@@ -87,12 +82,13 @@
                                 </div>
                             </li>
                             <li class="nav-link dropdown" id="Atualizar">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Listar</a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listar</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" id="LP" href="#">Produto</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" id="LF" href="#">Funcionario</a>
+                                    <div class="dropdown-divider"></div> 
+                                    <a class="dropdown-item" id="LGF" href="#">Logradouro Funcionario</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" id="LC" href="#">Cliente</a>
                                     <div class="dropdown-divider"></div>
@@ -101,8 +97,8 @@
                                     <a class="dropdown-item" id="LCNT" href="#">Contas</a>
                                 </div>
                             </li>
-                            <a class="nav-link" id="TDV" >Tela de Vendas</a>
-                            <a class="nav-link" id="PDP" >Pagamento de Parcelas</a>
+                            <a class="nav-link" id="TDV">Tela de Vendas</a>
+                            <a class="nav-link" id="PDP">Pagamento de Parcelas</a>
                         </div>
                     </nav>
                 </nav>
@@ -110,12 +106,12 @@
         </header>
         <div class="container-fluid w-100 h-100 p-0 d-flex justify-content-center ">
             <main role="main" class="inner w-75 flex-column align-self-center">
-                <div  id="mensagemDiv"></div>
+                <div id="mensagemDiv"></div>
                 <div id="h">
                     <h1 class="cover-heading titulo">Seja Bem Vindo!!</h1>
                     <p id="NomeUser" class="lead"></p>
                 </div>
-                
+
             </main>
         </div>
 
