@@ -297,16 +297,9 @@ $(function () {
                                 console.log(response[key]);
                                 $('#fornecedorSelect').append('<option value="' + response[key].id + '">' + response[key].id + ' - ' + response[key].nome + '</option>');
                             }
-<<<<<<< HEAD
-                            // $("#fornecedorSelect").val("133");
-                            // $("#fornecedorSelect").val(toString(response["id_fornecedor"]) );
-=======
 
->>>>>>> 5de2e7127617f76b0510b898868cc0179e38377f
                         }
                     });
-                    console.log(response);
-                    
                     for (prod of response) {
                         console.log(prod.id_fornecedor);
                         $("#CodProd").val(prod.id);
@@ -315,11 +308,7 @@ $(function () {
                         $("#ValorProd").val(prod.valor);
                         $("#QTDProd").val(prod.quantidade);
                         $("#tamanho").val(prod.tamanho);
-<<<<<<< HEAD
-                        
-=======
                         $("#fornecedorSelect").val("null");
->>>>>>> 5de2e7127617f76b0510b898868cc0179e38377f
                     }
                 }
 
