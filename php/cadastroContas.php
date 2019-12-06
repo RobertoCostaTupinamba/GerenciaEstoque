@@ -1,18 +1,7 @@
 <?php
     include_once("./conexao.php");
     
-    $desc = $_POST["desCNT"];
-    $vencimento = $_POST["VenCNT"];
-    $valor = $_POST["valorCNT"];
-    $pago = 'false';
-
-    if (isset($_POST['pagCNT'])) {
-        $pago = 'true';
-    }
-
-    //Replace da mascara.
-    $valor = str_replace(".", "", $valor);
-    $valor = str_replace(",", ".", $valor);
+    include_once("./contas.php");
  
     $string = $desc." ". $vencimento." ". $valor." $pago";
     if ($conexao) {

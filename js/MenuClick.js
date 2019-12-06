@@ -156,7 +156,7 @@ let TDV = '<div id="formContent">' + '<form id="Venda">' +
 
 //Tela pagamento de Parcelas
 let PagDP = '<div id="formContent">' + '<form id="PagamentoDeParcela">' +
-    '<input type="text" id="cpfcli" class="fadeIn second" name="cpfcli" placeholder="Cpf do Cliente" maxlength="11"></input>' +
+    '<input type="text" id="cdg" class="fadeIn second" name="cdg" placeholder="Codigo venda"></input>' +
     '<input type="text" id="parcela" class="fadeIn first" name="parcela" placeholder="Quantas parcela o mesmo está pagando?">' +
     '<input type="submit" id="button" class="fadeIn fourth" value="Registrar Pagamento">' +
     '</form>' +
@@ -217,6 +217,13 @@ let LCNT = '<div id="formContent">' + '<form id="ListarContas">' +
     '</div>' +
     '<table class="table">' +
     '<thead><tr><th scope="col">ID</th><th scope="col">Descrição</th><th scope="col">Vencimento</th><th scope="col">Valor</th><th scope="col">Pago</th></thead><tbody id="tbody"></tbody></table>';
+
+    let LDV = '<div id="formContent">' + '<form id="ListarDividasClientes">' +
+    '<div class="inputBusca"><input type="text" id="cdg" class="fadeIn first" placeholder="Buscar por codigo ou nome"></div> ' +
+    '</form>' +
+    '</div>' +
+    '<table class="table">' +
+    '<thead><tr><th scope="col">ID Venda</th><th scope="col">Parcelas</th><th scope="col">Parcelas Pagas</th><th scope="col">Data Venda</th><th scope="col">Data ultimo Pagamento</th><th scope="col">Pago</th><th scope="col">A vista?</th><th scope="col">CPF Cliente</th></thead><tbody id="tbody"></tbody></table>';
 
 // first second third fourth
 
@@ -400,7 +407,6 @@ $(document).ready(function () {
         $(".masthead-brand").text("Pagamento de Parcelas");
         $("#h").empty();
         $("#h").html(PagDP);
-        $("#cpfcli").mask("999.999.999-99");
         $("#script").html('<script src="./js/request.js"></script>');
     });
 
@@ -460,10 +466,40 @@ $(document).ready(function () {
         });
 
     });
+    $("#LDV").click(function (e) {
+        $(".active").removeClass("active");
+        $("#LDV").addClass("active");
+        $(".masthead-brand").text("Listar Dividas de Clientes");
+        $("#h").empty();
+        $("#h").html(LDV);
+        $("#script").html('<script src="./js/buscar.js"></script>');
+        $.ajax({
+            url: "./php/listarDividasClientes.php",
+            success: function (response) {
+                response = JSON.parse(response)
+                console.log(response);
+                
+                for (Cliente of response) {
+                    if(Cliente.pago == 'f'){
+                        Cliente.pago = 'NÃO'
+                    }else{
+                        Cliente.pago = 'SIM'
+                    }
+                    if (Cliente.avista == 'f') {
+                        Cliente.avista = 'NÃO'
+                    }else{
+                        Cliente.avista = 'SIM'
+                    }
+                    $("#tbody").append('<tr class="item"><th  >' + Cliente.id + '</th><td>' + Cliente.parcelas + '</td><td>' + Cliente.parcelas_pagas + '</td><td>' + Cliente.datavenda + '</<td><td>' + Cliente.dataultimopagamento + '</td><td>' + Cliente.pago + '</td><td>' + Cliente.avista + '<td>' + Cliente.id_cliente + '</tr></tr>');
+                }
+            }
+        });
+
+    });
     $("#LC").click(function (e) {
         $(".active").removeClass("active");
         $("#LC").addClass("active");
-        $(".masthead-brand").text("Listar Funcionarios");
+        $(".masthead-brand").text("Listar Clientes");
         $("#h").empty();
         $("#h").html(LC);
         $("#script").html('<script src="./js/buscar.js"></script>');
@@ -476,7 +512,6 @@ $(document).ready(function () {
                 }
             }
         });
-
     });
     $("#LFCR").click(function (e) {
         $(".active").removeClass("active");
@@ -494,7 +529,6 @@ $(document).ready(function () {
                 }
             }
         });
-
     });
     $("#LCNT").click(function (e) {
         $(".active").removeClass("active");

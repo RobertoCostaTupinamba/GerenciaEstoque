@@ -102,7 +102,11 @@ returns trigger as $$
 			end if;
 			return new;
 		elseif (tg_op = 'UPDATE') then
-			new.dataPago = current_date;
+			if (old.pago = false and new.pago = true) then
+				new.dataPago = current_date;
+			elseif (old.pago = true and new.pago = false) then
+				new.dataPago = null;
+			end if;
 		end if;
 	end;
 $$ language plpgsql;
@@ -219,7 +223,90 @@ for each row execute procedure verify_exist_pessoas_fun();
 -- ********************************************** NEW FUNCTION *******************************************************
 --Função de atualizar.
 
-create or replace function attContas()
+create or replace function attFuncionario(cg text, sal numeric, dt_nasc date, cg_hr int, ct_corr text, 
+										 dt_inicio date, cppf text)
+returns void as $$
+	declare
+		whereExist int;
+	begin
+		whereExist := 0;
+		select id into whereExist from cargo
+		where tipo = cg;
+		
+		if (whereExist = 0) then
+			insert into cargo values(nextval('cargo_id_seq'), cg);
+			select last_value into whereExist from cargo_id_seq;
+		end if;
+		update funcionarios set id_cargo=whereExist, salario=sal, data_nascimento=dt_nasc, carga_horaria=cg_hr,
+		conta_corrente=ct_corr, dt_inicio_trab=dt_inicio
+		where cpf = cppf;
+	end;
+$$ language plpgsql;
+
+
+create or replace function modify_endereco(r text, n int, b text, c text, cp text, cpff text)
+returns void as $$
+	
+	begin
+		update endereco set rua=r, numero=n, bairro=b, cidade=c, cep=cp from pessoas
+		where endereco.id = pessoas.id_endereco and
+		pessoas.cpf = cpff;
+	end;
+	
+$$ language plpgsql
+
+
+
+--Functions
+
+create or replace function gerencia_venda(id_produto text, qtd int)
+returns void as $$
+	declare
+		id_sell int;	
+	begin
+		select id into id_sell from venda where id = (SELECT MAX(id) FROM venda);
+		INSERT INTO produtos_vendidos(
+		id_prod, id_venda, quantidade)
+		VALUES (id_produto, id_sell, qtd);
+	end;
+$$ language plpgsql;
+
+create or replace function delete_produto(id_prod text)
+returns void as $$
+	declare
+		id_buy int;
+	begin
+		select id_compras into id_buy from produtos_compras where id_produtos = id_prod;
+		delete from produtos where id = id_prod;
+		delete from compras where id = id_buy;
+	end;
+$$ language plpgsql;
+
+
+
+--Trigger
+
+create or replace function parcelado_fun()
+returns trigger as $$
+	begin
+		if (new.parcelas_pagas+old.parcelas_pagas <= old.parcelas) then
+			new.parcelas_pagas = new.parcelas_pagas + old.parcelas_pagas;
+			new.dataUltimoPagamento = current_date;
+			
+			if (new.parcelas_pagas = old.parcelas) then
+				new.pago = true;
+			end if;
+		else
+			raise exception 'Error';
+		end if;
+		return new;
+	end;
+$$ language plpgsql;
+
+create trigger parcelado_tri
+before update on venda
+for each row execute procedure parcelado_fun()
+
 
 --*****************************************************VIEWS********************************************8
 create or replace view retornaDadosCliente as
@@ -232,6 +319,7 @@ select p.cpf, p.nome, p.telefone, e.rua, e.numero, e.bairro, e.cidade, e.cep
 select * from retornaDadosCliente
       where  cpf = '999.999.999-99';
 
+
 -- NEW VIEW
 create or replace view retornaDadosFuncionarios as
 select f.cpf,p.nome,p.telefone,e.rua, e.numero, e.bairro, e.cidade, e.cep,
@@ -242,9 +330,14 @@ select f.cpf,p.nome,p.telefone,e.rua, e.numero, e.bairro, e.cidade, e.cep,
         f.cpf = p.cpf and
         p.id_Endereco = e.id;
 		
+--NEW VIEW
+create or replace view valorProduto as
+select ((pv.quantidade * p.valor)*1.2) as valorTotal from venda v, produtos_vendidos pv, produtos p
+where pv.id_venda = v.id and
+pv.id_prod = p.id;
+		
 drop view retornaDadosFuncionarios;
         
-		
 select * from retornaDadosFuncionarios
 	where cpf = '999.999.999-99';
 	

@@ -10,12 +10,16 @@ $(function () {
                 alert(response);
                 if (response == 1) {
                     $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Sucesso</div>');
-                } else {
+                }
+                else if (response.indexOf("881475246795313") != -1) {
+                    $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Esta venda já foi paga<br>ou<br>Esta quantidade de parcelas é superior a que Cliente deve!</div>');
+                }
+                else {
                     $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
                 }
                 setTimeout(function exluiAviso() {
                     $("#mensagemDiv").empty();
-                }, 2000);
+                }, 3000);
             }
         });
     }
@@ -141,7 +145,7 @@ $(function () {
                         cpfcli: $("#cpfcli").val(),
                         produtos: produtosVendidos(),
                         FormaDePagamento: getRadioValor('FormaDePagamento'),
-                        pacelado: $("#parcela").val()
+                        parcelado: $("#parcela").val()
                     }
                     if (venda.produtos.length == 0) {
                         venda = "erro"
@@ -154,12 +158,19 @@ $(function () {
                     }, 2000);
                 } else {
                     $.ajax({
-                        type: "method",
-                        url: "url",
-                        data: "data",
-                        dataType: "dataType",
+                        type: "POST",
+                        url: "./php/Venda.php",
+                        data: venda,
                         success: function (response) {
-
+                            alert(response);
+                            if (response == 1) {
+                                $("#mensagemDiv").html('<div class="alert alert-success" role="alert">Sucesso</div>');
+                            } else {
+                                $("#mensagemDiv").html('<div class="alert alert-danger" role="alert">Algo inesperado aconteceu</div>');
+                            }
+                            setTimeout(function exluiAviso() {
+                                $("#mensagemDiv").empty();
+                            }, 2000);
                         }
                     });
                 }
@@ -232,7 +243,7 @@ $(function () {
                     console.log(response);
                     let produto = JSON.parse(response)
                     produto.forEach(element => {
-                        $("#tbody").append('<tr class="Produ"><th scope="row" class="id" >' + element.id + '</th><td>' + element.tipo + '</td><td class="qtd">' + $("#QTDProd").val() + '</td><td class="valor">' + element.valor * ($("#QTDProd").val()) + '</td><td>' + '<img src="img/delete.png" class="btnExcluir"/>' + '</td></tr>');
+                        $("#tbody").append('<tr class="Produ"><th scope="row" class="id" >' + element.id + '</th><td>' + element.tipo + '</td><td class="qtd">' + $("#QTDProd").val() + '</td><td class="valor">' + (element.valor * ($("#QTDProd").val()))*1.2 + '</td><td>' + '<img src="img/delete.png" class="btnExcluir"/>' + '</td></tr>');
                         $(".btnExcluir").bind("click", Excluir);
                     });
                     $("#total").text(CalcularTotal());
@@ -451,7 +462,7 @@ $(function () {
         e.preventDefault();
         var data = $(this).serialize();
         console.log(data);
-        request("./php/salvarAttClientes.php", data)
+        request("./php/salvarAttCliente.php", data)
     });
 
     //Atualizar Fornecedor
@@ -490,13 +501,14 @@ $(function () {
                         $("#cidadecfr").val(fornecedor.cidade);
                         $("#cepcfr").val(fornecedor.cep);
                     }
+                    $("#AtualizarFornec").html(atualizarFornecedor);
+                    $("input#Telcfr").mask("(99) 99999-999?9")
+                    $("input#cepcfr").mask("99999-999")
                 }
             }
         });
         //ajax
-        $("#AtualizarFornec").html(atualizarFornecedor);
-        $("input#Telcfr").mask("(99) 99999-999?9")
-        $("input#cepcfr").mask("99999-999")
+        
     });
 
     $("#AtualizarFornecedor").submit(function (e) {
@@ -557,7 +569,7 @@ $(function () {
         e.preventDefault();
         var data = $(this).serialize();
         console.log(data);
-        //request("./php/salvarAttContas.php", data)
+        request("./php/pagParcelado.php", data)
     });
 
     //Deletar produto

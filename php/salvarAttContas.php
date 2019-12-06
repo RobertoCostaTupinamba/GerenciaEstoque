@@ -1,7 +1,8 @@
 <?php
     include_once("./conexao.php");
+    include_once("./contas.php");
 
-    $id = $_POST["cdg"];
+
     $desc = $_POST["desCNT"];
     $vencimento = $_POST["VenCNT"];
     $valor = $_POST["valorCNT"];
@@ -10,24 +11,20 @@
     if (isset($_POST['pagCNT'])) {
         $pago = 'true';
     }
-
-    //Replace da mascara.
-
-
     
-    $string = $desc." ". $vencimento." ". $valor." $pago";
-    if ($conexao) {
-        $update = "update contas set descricao ='".$desc."', vencimento ='".$vencimento."', valor =".$valor.",pago = ".$pago." where id=".$id.";";
-        // "insert into contas(descricao, vencimento, valor, pago) 
-        // values('".$desc."', '".$vencimento."',".$valor.",".$pago.");";
-        
-        if ($res = pg_query($conexao,$update)) {
-            echo "1";
+    if ($conexao)  {
+        if(empty($desc) == false, empty($vencimento) == false, empty($valor) == false) {
+            $update = "update contas set descricao='".$desc."',vencimento=".$vencimento.",
+            ".$valor.";";
+            if ($res = pg_query($conexao, $update)) {
+                echo "1"; // Deu certo.
+            }
+            else {
+                echo "2"; //Error.
+            }
         }
         else {
-            echo "2";
+            echo "2"; //Error.
         }
     }
-    pg_close($conexao);
-
 ?>

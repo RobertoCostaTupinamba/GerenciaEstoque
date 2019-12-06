@@ -91,6 +91,9 @@
                                     <a class="dropdown-item" id="LGF" href="#">Logradouro Funcionario</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" id="LC" href="#">Cliente</a>
+                                    
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="LDV" href="#">Dividas de Cliente</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" id="LFCR" href="#">Fornecedor</a>
                                     <div class="dropdown-divider"></div>
